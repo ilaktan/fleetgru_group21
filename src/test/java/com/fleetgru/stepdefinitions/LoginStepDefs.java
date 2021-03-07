@@ -55,8 +55,11 @@ public class LoginStepDefs {
     }
 
     @When("the user logs in using {string} and {string}")
-    public void the_user_logs_in_using_and(String username, String password) {
+    public void the_user_logs_in_using_and(String string, String string2) {
         LoginPage loginPage = new LoginPage();
+        String username = ConfigurationReader.get(string);
+        String password = ConfigurationReader.get(string2);
+
         loginPage.login(username,password);
     }
 
