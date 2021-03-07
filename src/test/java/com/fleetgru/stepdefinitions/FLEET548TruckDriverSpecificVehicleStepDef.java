@@ -1,31 +1,25 @@
 package com.fleetgru.stepdefinitions;
 
 
-import com.fleetgru.pages.AddEventPageDT;
-import com.fleetgru.pages.CarInfoPageDT;
+import com.fleetgru.pages.AddEventPage;
 import com.fleetgru.pages.LoginPage;
-import com.fleetgru.pages.VehiclesPageDT;
+import com.fleetgru.pages.VehiclesPage;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class FLEET548TruckDriverSpecificVehicleStepDef {
     LoginPage loginPage=new LoginPage();
 
-    VehiclesPageDT createCarPage=new VehiclesPageDT();
+    VehiclesPage createCarPage=new VehiclesPage();
 
-    AddEventPageDT createCarPage2=new AddEventPageDT();
-
-    CarInfoPageDT carInfoPage=new CarInfoPageDT();
+    AddEventPage createCarPage2=new AddEventPage();
 
     @Then("the user sees all informations about specific car")
     public void the_user_sees_all_informations_about_specific_car() {
@@ -59,33 +53,33 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
 
     @When("the user filters using either Activity Type button")
     public void the_user_filters_using_either_Activity_Type_button() {
-        carInfoPage.waitUntilLoaderScreenDisappear();
+        createCarPage2.waitUntilLoaderScreenDisappear();
         //forceClick(carInfoPage.activityButtonJS);
-        carInfoPage.activityTypeButton.click();
+        createCarPage2.activityTypeButton.click();
         BrowserUtils.waitFor(3);
-        carInfoPage.calendarEventOption.click();
+        createCarPage2.calendarEventOption.click();
     }
 
 
 
     @Then("data is filtered by Activity Type")
     public void data_is_filtered_by_Activity_Type() {
-        for(WebElement each:carInfoPage.FilteredActivityTypeList){
+        for(WebElement each:createCarPage2.FilteredActivityTypeList){
             Assert.assertTrue(each.getText().contains("Calendar event"));
         }
     }
     @When("the user filters using either Date Range button")
     public void the_user_filters_using_either_Date_Range_button() {
-        carInfoPage.dataRangeButton.click();
+        createCarPage2.dataRangeButton.click();
         BrowserUtils.waitFor(3);
-        carInfoPage.date1.sendKeys("Feb 1, 2020");
-        carInfoPage.date2.sendKeys("Feb 25, 2021");
-        carInfoPage.updateButton.click();
+        createCarPage2.date1.sendKeys("Feb 1, 2020");
+        createCarPage2.date2.sendKeys("Feb 25, 2021");
+        createCarPage2.updateButton.click();
     }
     @Then("data is filtered by Date Range")
     public void data_is_filtered_by_Date_Range() {
         BrowserUtils.waitFor(3);
-        for(WebElement each:carInfoPage.dates){
+        for(WebElement each:createCarPage2.dates){
             Assert.assertTrue(Integer.parseInt(each.getText().substring(4))>1);
         }
 
@@ -94,8 +88,8 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
     @When("the user clicks refresh button")
     public void the_user_clicks_refresh_button() {
         BrowserUtils.waitFor(3);
-        carInfoPage.olderButton.click();
-        carInfoPage.refreshButton.click();
+        createCarPage2.olderButton.click();
+        createCarPage2.refreshButton.click();
     }
 
 
@@ -104,7 +98,7 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
     @Then("the data is refreshed")
     public void the_data_is_refreshed() {
 
-        Assert.assertFalse(carInfoPage.date.getText().contains("Yesterday"));
+        Assert.assertFalse(createCarPage2.date.getText().contains("Yesterday"));
     }
 
 
@@ -138,7 +132,7 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
     @When("the user clicks Newer")
     public void the_user_clicks_Newer() {
         BrowserUtils.waitFor(2);
-        carInfoPage.newerButton.click();
+        createCarPage2.newerButton.click();
 
     }
 
@@ -146,14 +140,14 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
 
     @Then("the user sees all info")
     public void the_user_sees_all_info() {
-        for(WebElement each:carInfoPage.FilteredActivityTypeList){
+        for(WebElement each:createCarPage2.FilteredActivityTypeList){
             Assert.assertTrue(each.getText().contains("Calendar event"));
         }
     }
 
     @When("the user clicks Older")
     public void the_user_clicks_Older() {
-        carInfoPage.olderButton.click();
+        createCarPage2.olderButton.click();
 
     }
 
