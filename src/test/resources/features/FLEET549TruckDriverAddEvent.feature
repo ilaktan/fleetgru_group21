@@ -1,4 +1,4 @@
-#@wip
+@wip
 Feature: Truck Driver can edit car
   Background:
 
@@ -13,7 +13,7 @@ Feature: Truck Driver can edit car
   @FLEET-556 @FLEET-558
   Scenario: TruckDriver add event by Add Event button US-343
 
-@wip
+
   @FLEET-389 @FLEET-390
   Scenario: Truck Driver able to see update in both general info and Activity tab US-343
 

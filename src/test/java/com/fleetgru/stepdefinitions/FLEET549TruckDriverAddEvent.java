@@ -6,10 +6,15 @@ import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,15 +27,12 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         dashBoard.waitUntilLoaderScreenDisappear();
         System.out.println("the user navigates to Fleet to Vehicles");
     }
+
     @When("the user clicks any car in the list")
     public void the_user_clicks_any_car_in_the_list() {
-        int click_counter=0;
-        while(new VehiclesPage().oneCarData.isDisplayed()&&click_counter<3) {
-            new VehiclesPage().selectAndClickAnyCarInTheTable();
-            System.out.println("select and click any car in the table is done");
-            click_counter++;
-        }
+        new VehiclesPage().clickACarInTheTable();
     }
+
     @When("clicks the -Add Event- button")
     public void clicks_the_Add_Event_button() {
         BrowserUtils.waitFor(3);
@@ -71,11 +73,16 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
     @Then("the user should verify the info at General Information page with Activity tab.")
     public void the_user_should_verify_the_info_at_General_Information_page_with_Activity_tab() {
         AddEventPage v=new AddEventPage();
-        System.out.println("g created");
         v.waitUntilLoaderScreenDisappear();
-        System.out.println("g.waitUntilLoaderScreenDisappear(); done");
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
+        new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+
+
+
+   /*
+
         if(v.eventList.size()>0) {
-            System.out.println("if(g.eventList.size()>0) {   inside condition");
+
             BrowserUtils.waitForClickablility(v.eventList.get(0),1);
             System.out.println("BrowserUtils.waitForClickability(g.eventList.get(0),1); done");
             BrowserUtils.clickWithJS(v.refreshButton);
@@ -89,19 +96,27 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
                 System.out.println("ElementClickInterceptedException");
             }
 
-            List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
-            System.out.println("List<String> listEventSubEntries=BrowserUtils.getElementsText(g.eventSubEntries);   has obtained");
-            while (listEventSubEntries.size()<1){
-                System.out.println("while (listEventSubEntries.size()<1){  in LOOP");
-                try {
-                    wait(500);
-                    System.out.println("wait(500); WAITING");
-                    listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
-                }catch (Exception e){
-                    System.out.println("GOT EXCEPTION");
-                }
 
-            }
+            */
+            //locator belongs
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
+
+
+
+
+            List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
+
+//            while (listEventSubEntries.size()<1){
+//                System.out.println("while (listEventSubEntries.size()<1){  in LOOP");
+//                try {
+//                    wait(500);
+//                    System.out.println("wait(500); WAITING");
+//                    listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
+//                }catch (Exception e){
+//                    System.out.println("GOT EXCEPTION");
+//                }
+//
+//            }
             List<String> expected= Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ","N/A","Feb 25, 2021, 12:00 AM","Feb 25, 2022, 12:00 AM","Yes","Weekly every 1 week on Monday");
             System.out.println("List<String> expected= Arrays.asList(\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"N/A\",\"Feb 25, 2021, 12:00 AM\",\"Feb 25, 2022, 12:00 AM\",\"Yes\",\"Weekly every 1 week on Monday\");   CREATED");
             for(int i=0;i<expected.size();i++){
@@ -109,6 +124,6 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
                 System.out.println((i + 1) + "th element fits");
             }
         }
-        System.out.println("stop here");
-    }
+
+
 }

@@ -1,18 +1,17 @@
 package com.fleetgru.pages;
 
-import com.fleetgru.utilities.BrowserUtils;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
 public class AddEventPage extends BasePage{
 
-    @FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']")
+    @FindBy(css = "div.accordion-heading.clearfix")    ////div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']
     public List<WebElement> eventList;
 
-    @FindBy(xpath = "//a[contains(@href,'#accordion-item')][ @class='accordion-icon accordion-toggle collapsed']") //css = "a[data-toggle='collapse']"
-    public WebElement expandButtonCollapsed;
+    @FindBy(xpath = "(//a[contains(@href,'#accordion-item')][ @class='accordion-icon accordion-toggle collapsed'])[1]") //css = "a[data-toggle='collapse']"
+    public WebElement lastExpandButtonCollapsed;
     //public List<WebElement> expandButtons;
 
     //seen after event items expanded
@@ -60,19 +59,5 @@ public class AddEventPage extends BasePage{
 
     @FindBy(css = "button[title='close']")
     public WebElement closeButton;
-    public void clickExpandWhenVisible(){
-        waitUntilLoaderScreenDisappear();
-        if (expandButtonCollapsed.isDisplayed()) {
-            waitUntilWebElementVisible(expandButtonCollapsed,10000);
-            while(new VehiclesPage().carGeneralInformationValues.size()<1) {
-                BrowserUtils.clickWithJS(expandButtonCollapsed);
-            }
-            waitUntilWebElementVisible(savedTitleOnGeneralInformationPage,1000);
-            BrowserUtils.waitFor(1);
-        }
-//        while(new AddEvent().titleOfAddEvent.size()<1) {
-//            BrowserUtils.clickWithJS(new Vehicles().addEvent);
-//        }
 
-    }
 }
