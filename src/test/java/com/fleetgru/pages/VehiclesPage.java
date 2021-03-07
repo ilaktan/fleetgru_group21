@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.Random;
 
-public class Vehicles extends BasePage {
+public class VehiclesPage extends BasePage {
 
 
     @FindBy(css = "div[class='message-item message']")

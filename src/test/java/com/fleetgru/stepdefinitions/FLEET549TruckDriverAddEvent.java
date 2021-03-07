@@ -1,9 +1,6 @@
 package com.fleetgru.stepdefinitions;
 
-import com.fleetgru.pages.AddEvent;
-import com.fleetgru.pages.BasePage;
-import com.fleetgru.pages.DashBoard;
-import com.fleetgru.pages.Vehicles;
+import com.fleetgru.pages.*;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Then;
@@ -20,7 +17,7 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
 
     @When("the user navigates to {string} to {string}")
     public void the_user_navigates_to_to(String tab, String module) {
-        DashBoard dashBoard = new DashBoard();
+        DashBoardPage dashBoard = new DashBoardPage();
         dashBoard.navigateToModule(tab, module);
         dashBoard.waitUntilLoaderScreenDisappear();
         System.out.println("the user navigates to Fleet to Vehicles");
@@ -28,8 +25,8 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
     @When("the user clicks any car in the list")
     public void the_user_clicks_any_car_in_the_list() {
         int click_counter=0;
-        while(new Vehicles().oneCarData.isDisplayed()&&click_counter<3) {
-            new Vehicles().selectAndClickAnyCarInTheTable();
+        while(new VehiclesPage().oneCarData.isDisplayed()&&click_counter<3) {
+            new VehiclesPage().selectAndClickAnyCarInTheTable();
             System.out.println("select and click any car in the table is done");
             click_counter++;
         }
@@ -39,41 +36,41 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         BrowserUtils.waitFor(3);
         //BrowserUtils.waitForClickablility(new Vehicles().addEvent,1);
         //just to click one time only
-        while(new AddEvent().titleOfAddEvent.size()<1) {
-            BrowserUtils.clickWithJS(new Vehicles().addEvent);
+        while(new AddEventPage().titleOfAddEvent.size()<1) {
+            BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
         }
     }
 
     @Then("the user should edit the required fields")
     public void the_user_should_edit_the_required_fields() {
-        AddEvent addEvent=new AddEvent();
-        addEvent.waitUntilLoaderScreenDisappear();
-        addEvent.eventTitle.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        addEvent.organizerName.sendKeys("Michael Knight");
-        addEvent.organizeremail.sendKeys("m.knight@organizer.com");
-        addEvent.startdate.clear();
-        addEvent.startdate.sendKeys("Feb 25, 2021");
-        addEvent.enddate.clear();
-        addEvent.enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
+        AddEventPage addEventPage =new AddEventPage();
+        addEventPage.waitUntilLoaderScreenDisappear();
+        addEventPage.eventTitle.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        addEventPage.organizerName.sendKeys("Michael Knight");
+        addEventPage.organizeremail.sendKeys("m.knight@organizer.com");
+        addEventPage.startdate.clear();
+        addEventPage.startdate.sendKeys("Feb 25, 2021");
+        addEventPage.enddate.clear();
+        addEventPage.enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
         JavascriptExecutor j=(JavascriptExecutor) Driver.get();
-        j.executeScript("arguments[0].click();",addEvent.allDayEvent);
+        j.executeScript("arguments[0].click();", addEventPage.allDayEvent);
         //addEvent.allDayEvent.click();
         //j.executeScript("arguments[0].click();",addEvent.repeat);
-        j.executeScript("arguments[0].click();",addEvent.repeat);
-        Select select=new Select(addEvent.repeatsDropdown);
+        j.executeScript("arguments[0].click();", addEventPage.repeat);
+        Select select=new Select(addEventPage.repeatsDropdown);
         select.selectByVisibleText("Weekly");
-        addEvent.checkBoxMonday.click();
-        addEvent.saveButton.click();
+        addEventPage.checkBoxMonday.click();
+        addEventPage.saveButton.click();
         //BrowserUtils.waitForPresenceOfElement(By.cssSelector("div[class='message-item message']>strong"),10 );
         //BrowserUtils.waitForVisibility(addEvent.savedTitleOnGeneralInformationPage,5);
-        addEvent.waitUntilWebElementVisible(addEvent.savedTitleOnGeneralInformationPage,1000);
-        Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ",addEvent.savedTitleOnGeneralInformationPage.getText());
+        addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);
+        Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", addEventPage.savedTitleOnGeneralInformationPage.getText());
         System.out.println("end of the user should edit the required fields step");
     }
 
     @Then("the user should verify the info at General Information page with Activity tab.")
     public void the_user_should_verify_the_info_at_General_Information_page_with_Activity_tab() {
-        AddEvent v=new AddEvent();
+        AddEventPage v=new AddEventPage();
         System.out.println("g created");
         v.waitUntilLoaderScreenDisappear();
         System.out.println("g.waitUntilLoaderScreenDisappear(); done");

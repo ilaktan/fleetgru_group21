@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class AddEvent extends BasePage{
+public class AddEventPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']")
     public List<WebElement> eventList;
@@ -64,7 +64,7 @@ public class AddEvent extends BasePage{
         waitUntilLoaderScreenDisappear();
         if (expandButtonCollapsed.isDisplayed()) {
             waitUntilWebElementVisible(expandButtonCollapsed,10000);
-            while(new Vehicles().carGeneralInformationValues.size()<1) {
+            while(new VehiclesPage().carGeneralInformationValues.size()<1) {
                 BrowserUtils.clickWithJS(expandButtonCollapsed);
             }
             waitUntilWebElementVisible(savedTitleOnGeneralInformationPage,1000);
