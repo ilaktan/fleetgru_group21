@@ -1,4 +1,4 @@
-@wip
+
 Feature: Truck driver specific info
 
 
