@@ -1,8 +1,13 @@
 package com.fleetgru.pages;
 
 
+import com.fleetgru.utilities.BrowserUtils;
+import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public class AddEventPage extends BasePage{
@@ -135,5 +140,73 @@ public class AddEventPage extends BasePage{
     @FindBy(css = "button[title='close']")
     public WebElement closeButton;
 
+   // Joseph Locators
+   @FindBy(css = "div>a[title='Edit Car']")
+   public WebElement editCar;
+
+    @FindBy(xpath = "(//select)[1]")
+    public WebElement transmission;
+
+    @FindBy(xpath = "(//select)[2]")
+    public WebElement fuelType;
+
+    @FindBy(xpath = "//div/button[@type='submit']")
+    public WebElement saveAndClose;
+
+    @FindBy(xpath = "//div[@class='controls']/input[@type='text']")
+    public List<WebElement> severalInputBoxes;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[14]")
+    public WebElement transmissionOutput;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[15]")
+    public WebElement fuelTypeOutput;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    public List<WebElement> checkBoxes;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[1]")
+    public WebElement firstCheckBox;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[2]")
+    public WebElement tagsOutput;
+
+    @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Driver')]")
+    public WebElement driverName;
+
+    @FindBy(xpath = "//input[contains(@id,'date_selector_custom_entity_type_ImmatriculationDate')]")
+    public WebElement immatriculationDate;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[8]")
+    public WebElement immatriculationDateOutput;
+
+    @FindBy(xpath = "//input[contains(@id,'custom_entity_type_LicensePlate')]")
+    public WebElement licencePlateEntry;
+
+    public void clickCheckBoxesAndSave(List<WebElement> checkBoxes){
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(firstCheckBox));
+        BrowserUtils.waitFor(13);
+        int count=0;
+
+        outer: for (WebElement checkBox : checkBoxes) {
+            if(!checkBox.isSelected()) {
+                checkBox.click();
+                System.out.println("checkBox clicked");
+            }
+            if(checkBox.isSelected()) {
+                count++;
+            }
+            if(count==7) break outer;
+        }
+        new AddEventPage().saveandClose();
+    }
+
+    public void saveandClose(){
+        waitUntilWebElementVisible(saveAndClose,1000);
+        if(saveAndClose.isDisplayed()){
+            BrowserUtils.clickWithJS(saveAndClose);
+        }
+        waitUntilWebElementVisible(tagsOutput,2000);
+    }
 
 }

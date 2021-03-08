@@ -2,6 +2,7 @@ package com.fleetgru.pages;
 
 
 
+import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -76,7 +77,8 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//button[@type='submit'])[1]")
     public WebElement saveAndCloseButton;
 
-    @FindBy(css = "div.control-label")
+    @FindAll({@FindBy(css = "div.control-label"),
+    @FindBy(xpath = "//div[@class='control-group attribute-row']//div[@class='control-label']")})
     public List<WebElement> carGeneralInformationValues;
 
     @FindAll({@FindBy(xpath = "(//div[@class='pull-right']//a)[1]"),
@@ -159,6 +161,7 @@ public class VehiclesPage extends BasePage{
 //---------------------------
 
     public void clickACarInTheTable() {
+        BrowserUtils.waitFor(3);
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
         new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
         waitUntilLoaderScreenDisappear();

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -374,7 +376,20 @@ public class BrowserUtils {
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.get(), time).until(ExpectedConditions.presenceOfElementLocated(by));
     }
-
+//from Joseph
+    public static String createFutureDate(int year,int month,int day){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");   //Feb 1, 2021
+        LocalDateTime now= LocalDateTime.now();
+        LocalDateTime future=now.plusYears(year).plusMonths(month).plusDays(day);
+        return dtf.format(future);
+    }
+    //from Joseph
+    public static String createPastDate(int year,int month,int day) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");   //Feb 1, 2021
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime past = now.minusYears(year).minusMonths(month).minusDays(day);
+        return dtf.format(past);
+    }
 
 
 }
