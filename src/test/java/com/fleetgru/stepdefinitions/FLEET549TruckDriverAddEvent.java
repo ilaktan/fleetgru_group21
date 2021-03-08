@@ -1,0 +1,129 @@
+package com.fleetgru.stepdefinitions;
+
+import com.fleetgru.pages.*;
+import com.fleetgru.utilities.BrowserUtils;
+import com.fleetgru.utilities.Driver;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FLEET549TruckDriverAddEvent extends BasePage {
+
+    @When("the user navigates to {string} to {string}")
+    public void the_user_navigates_to_to(String tab, String module) {
+        DashBoardPage dashBoard = new DashBoardPage();
+        dashBoard.navigateToModule(tab, module);
+        dashBoard.waitUntilLoaderScreenDisappear();
+        System.out.println("the user navigates to Fleet to Vehicles");
+    }
+
+    @When("the user clicks any car in the list")
+    public void the_user_clicks_any_car_in_the_list() {
+        new VehiclesPage().clickACarInTheTable();
+    }
+
+    @When("clicks the -Add Event- button")
+    public void clicks_the_Add_Event_button() {
+        BrowserUtils.waitFor(3);
+        //BrowserUtils.waitForClickablility(new Vehicles().addEvent,1);
+        //just to click one time only
+        while(new AddEventPage().titleOfAddEvent.size()<1) {
+            BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
+        }
+    }
+
+    @Then("the user should edit the required fields")
+    public void the_user_should_edit_the_required_fields() {
+        AddEventPage addEventPage =new AddEventPage();
+        addEventPage.waitUntilLoaderScreenDisappear();
+        addEventPage.eventTitle.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        addEventPage.organizerName.sendKeys("Michael Knight");
+        addEventPage.organizeremail.sendKeys("m.knight@organizer.com");
+        addEventPage.startdate.clear();
+        addEventPage.startdate.sendKeys("Feb 25, 2021");
+        addEventPage.enddate.clear();
+        addEventPage.enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
+        JavascriptExecutor j=(JavascriptExecutor) Driver.get();
+        j.executeScript("arguments[0].click();", addEventPage.allDayEvent);
+        //addEvent.allDayEvent.click();
+        //j.executeScript("arguments[0].click();",addEvent.repeat);
+        j.executeScript("arguments[0].click();", addEventPage.repeat);
+        Select select=new Select(addEventPage.repeatsDropdown);
+        select.selectByVisibleText("Weekly");
+        addEventPage.checkBoxMonday.click();
+        addEventPage.saveButton.click();
+        //BrowserUtils.waitForPresenceOfElement(By.cssSelector("div[class='message-item message']>strong"),10 );
+        //BrowserUtils.waitForVisibility(addEvent.savedTitleOnGeneralInformationPage,5);
+        addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);
+        Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", addEventPage.savedTitleOnGeneralInformationPage.getText());
+        System.out.println("end of the user should edit the required fields step");
+    }
+
+    @Then("the user should verify the info at General Information page with Activity tab.")
+    public void the_user_should_verify_the_info_at_General_Information_page_with_Activity_tab() {
+        AddEventPage v=new AddEventPage();
+        v.waitUntilLoaderScreenDisappear();
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
+        new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+
+
+
+   /*
+
+        if(v.eventList.size()>0) {
+
+            BrowserUtils.waitForClickablility(v.eventList.get(0),1);
+            System.out.println("BrowserUtils.waitForClickability(g.eventList.get(0),1); done");
+            BrowserUtils.clickWithJS(v.refreshButton);
+            System.out.println("BrowserUtils.clickWithJS(g.refreshButton);  dont know if refreshed");
+
+            try {
+                v.clickExpandWhenVisible();    //bu expand yapsa da ilk sıra değil ikinci sıradakini expand yapıyor. Kodumdaki bug
+                System.out.println("g.clickExpandWhenVisible(); maybe clicked");
+            }
+            catch (ElementClickInterceptedException click){
+                System.out.println("ElementClickInterceptedException");
+            }
+
+
+            */
+            //locator belongs
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
+
+
+
+
+            List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
+
+//            while (listEventSubEntries.size()<1){
+//                System.out.println("while (listEventSubEntries.size()<1){  in LOOP");
+//                try {
+//                    wait(500);
+//                    System.out.println("wait(500); WAITING");
+//                    listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
+//                }catch (Exception e){
+//                    System.out.println("GOT EXCEPTION");
+//                }
+//
+//            }
+            List<String> expected= Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ","N/A","Feb 25, 2021, 12:00 AM","Feb 25, 2022, 12:00 AM","Yes","Weekly every 1 week on Monday");
+            System.out.println("List<String> expected= Arrays.asList(\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"N/A\",\"Feb 25, 2021, 12:00 AM\",\"Feb 25, 2022, 12:00 AM\",\"Yes\",\"Weekly every 1 week on Monday\");   CREATED");
+            for(int i=0;i<expected.size();i++){
+                Assert.assertEquals((i+1)+"th element fits",expected.get(i),listEventSubEntries.get(i));
+                System.out.println((i + 1) + "th element fits");
+            }
+        }
+
+
+}

@@ -29,7 +29,7 @@ public class LoginStepDefs {
 
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         String actualTitle = Driver.get().getTitle();
         Assert.assertEquals("Dashboard",actualTitle);
 

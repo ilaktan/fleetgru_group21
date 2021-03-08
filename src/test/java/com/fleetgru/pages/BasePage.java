@@ -3,6 +3,7 @@ package com.fleetgru.pages;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
@@ -113,5 +114,16 @@ public abstract class  BasePage {
             BrowserUtils.clickWithTimeOut(Driver.get().findElement(By.xpath(moduleLocator)),  5);
         }
     }
+    /**
+     wait until WebElement visible
+     */
+    public void waitUntilWebElementVisible(WebElement webElement,long timeoutMillis) {
+        while (!webElement.isDisplayed()||loaderMask.isDisplayed()) {
+            try {
+                wait(timeoutMillis);
+                waitUntilLoaderScreenDisappear();
+            }catch (NoSuchElementException | InterruptedException el) { Driver.get().navigate().refresh();}
 
+        }
+    }
 }
