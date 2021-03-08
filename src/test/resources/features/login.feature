@@ -1,13 +1,14 @@
-@login
+
 Feature: Users should be able to login
 
   Background:
     Given the user is on the login page
 
-
+  @login
   Scenario: Login as a driver
     When the user enters the driver information
     Then the user should be able to login
+
 
   Scenario:  Login as a sales manager
     When the user enters the sales manager information

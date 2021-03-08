@@ -2,6 +2,7 @@ package com.fleetgru.pages;
 
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
@@ -15,11 +16,12 @@ public class AddEventPage extends BasePage{
     //public List<WebElement> expandButtons;
 
     //seen after event items expanded
-    @FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")
+    //
+    @FindAll({@FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div"),
+    @FindBy(xpath = "//div[@class='responsive-block']//div[@class='control-label']")})
     public List<WebElement> eventSubEntries;
 
-    @FindBy(css = "a.action.btn")
-    public WebElement refreshButton;
+
 
     //Title
     @FindBy(xpath = "//input[@data-name='field__title']")
