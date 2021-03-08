@@ -97,8 +97,7 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")
     public List<WebElement> eventSubEntries;
 
-    @FindBy(css = "a.action.btn")
-    public WebElement refreshButton;
+    ///Burada refresh vardi. Sildim.
 
     //Title
     @FindBy(xpath = "//input[@data-name='field__title']")
