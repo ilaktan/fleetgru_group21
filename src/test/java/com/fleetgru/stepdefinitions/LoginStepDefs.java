@@ -1,5 +1,6 @@
 package com.fleetgru.stepdefinitions;
 
+import com.fleetgru.pages.DashBoardPage;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.ConfigurationReader;
@@ -61,6 +62,7 @@ public class LoginStepDefs {
         String password = ConfigurationReader.get(string2);
 
         loginPage.login(username,password);
+        new DashBoardPage().waitUntilLoaderScreenDisappear();
     }
 
     @Then("the title contains {string}")
