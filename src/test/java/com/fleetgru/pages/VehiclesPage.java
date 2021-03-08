@@ -49,8 +49,4 @@ public class VehiclesPage extends BasePage {
     @FindBy(xpath = "(//div[@class='container-fluid']//a)[1]")
     public WebElement generalTab;
 
-
-
-
-
 }

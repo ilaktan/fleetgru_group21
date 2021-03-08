@@ -12,7 +12,7 @@ public class AddEventPage extends BasePage{
     public List<WebElement> eventList;
 
     @FindBy(xpath = "(//a[contains(@href,'#accordion-item')][ @class='accordion-icon accordion-toggle collapsed'])[1]") //css = "a[data-toggle='collapse']"
-    public WebElement lastExpandButtonCollapsed;
+    public List<WebElement> lastExpandButtonsCollapsed;
     //public List<WebElement> expandButtons;
 
     //seen after event items expanded

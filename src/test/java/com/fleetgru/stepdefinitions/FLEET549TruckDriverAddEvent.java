@@ -77,7 +77,7 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         AddEventPage v=new AddEventPage();
         v.waitUntilLoaderScreenDisappear();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
-        new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+        new Actions(Driver.get()).moveToElement(v.lastExpandButtonsCollapsed.get(0)).click().perform();
             //locator belongs
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
             List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
