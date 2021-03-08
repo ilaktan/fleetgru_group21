@@ -194,4 +194,34 @@ public class VehiclesPage extends BasePage{
     }
 //--------------------------
 
+/*-Emine*/
+    @FindBy(xpath = "(//a[@href='#'])[23]")
+    public WebElement forwardButton;
+
+    @FindBy(xpath = "(//a[@href='#'])[22]")
+    public WebElement backButton;
+
+    @FindBy (xpath = "//button[@data-toggle='dropdown']")
+    public WebElement perPageButton;
+
+    @FindBy (xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr")
+    public List<WebElement> tableRowSize;
+
+    @FindBy (xpath = "(//a[@data-toggle='dropdown'])[4]")
+    public WebElement exportGridButton;
+
+    @FindBy (xpath = "//div[@class='message']")
+    public WebElement successMessage;
+
+
+    public void selectPerPageItem(String item){
+        String xpath = "//ul//a[@class='dropdown-item'][normalize-space()='"+item+"']";
+        Driver.get().findElement(By.xpath(xpath)).click();
+    }
+    public void selectFormat(String formatType){
+        String xpath = "//a[@title='"+formatType+"']";
+        Driver.get().findElement(By.xpath(xpath)).click();
+    }
+/*Emine-*/
+
 }
