@@ -1,13 +1,14 @@
-@wipp
+@US-546
 Feature: Filter Functions
 
   Background:
+    #@FLEET-552
     Given the user is on the login page
     When the user enters the driver information
     Then the user should be able to login
 
-
-  Scenario: Use Grid Setting button as a Store Manager
+  @FLEET-572 @FLEET-584
+  Scenario: Use Grid Setting button as a Truck Driver
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     Then following columns should be available under grid settings button
@@ -32,14 +33,14 @@ Feature: Filter Functions
       | Horsepower Taxation       |
       | Power (KW)                |
 
-
+  @FLEET-573 @FLEET-584
   Scenario: Use Grid Setting Button -Search Valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     And the user searches column name "Driver" in the Quick Search input
     Then the system should display "Driver" column under dropdown menu.
 
-
+  @FLEET-574 @FLEET-584
   Scenario: Use Grid Setting Button -Search invalid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
@@ -47,14 +48,14 @@ Feature: Filter Functions
     Then the system should display "No columns found" message under dropdown menu.
 
 
-
+  @FLEET-575 @FLEET-584
   Scenario: Using Refresh button
     When the user navigates to "Fleet" to "Vehicles"
     When the user go to page "4"
     And the user click the refresh button
     Then page input should be "4"
 
-
+  @FLEET-576 @FLEET-584
   Scenario: Using Reset button
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
@@ -64,7 +65,7 @@ Feature: Filter Functions
     Then the system should not display "ID" column on the webpage
 
 
-
+  @FLEET-577 @FLEET-584
   Scenario: Using Grid Setting Button -Click Unclick the Column option
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
@@ -73,7 +74,7 @@ Feature: Filter Functions
     And user unselect the "Tags" column
     Then the system should not display "Tags" column on the webpage
 
-
+  @FLEET-578 @FLEET-584
   Scenario: Using Grid Setting Button -Click Select All button
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
@@ -101,7 +102,7 @@ Feature: Filter Functions
       | POWER (KW)                |
 
 
-
+  @FLEET-579 @FLEET-584
   Scenario: Manage Filter button options
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
@@ -128,7 +129,7 @@ Feature: Filter Functions
       | Power (KW)                |
 
 
-
+  @FLEET-580 @FLEET-584
   Scenario: Use Manage-Filter Button - Searching invalid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
@@ -136,7 +137,7 @@ Feature: Filter Functions
     And User searches "diver" column in the Search input
     Then verifies driver not displayed
 
-
+  @FLEET-581 @FLEET-584
   Scenario: Use Manage-Filter Button - Searching valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
@@ -144,7 +145,7 @@ Feature: Filter Functions
     And User searches "Driver" column in the Search input
     Then the system should display the "Driver" option under dropdown menu
 
-
+  @FLEET-582 @FLEET-584
   Scenario: Filters sign functionality
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
@@ -164,8 +165,7 @@ Feature: Filter Functions
       |Is Not Any Of   |
       |Is Empty        |
       |Is Not Empty    |
-
-    @1
+  @FLEET-583 @FLEET-584
   Scenario: Using the Manage Filter -Contains button with valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
