@@ -25,7 +25,7 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         DashBoardPage dashBoard = new DashBoardPage();
         dashBoard.navigateToModule(tab, module);
         dashBoard.waitUntilLoaderScreenDisappear();
-        System.out.println("the user navigates to Fleet to Vehicles");
+        //System.out.println("the user navigates to Fleet to Vehicles");
     }
 
     @When("the user clicks any car in the list")

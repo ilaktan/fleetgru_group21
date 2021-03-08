@@ -185,7 +185,7 @@ public class AddEventPage extends BasePage{
 
     public void clickCheckBoxesAndSave(List<WebElement> checkBoxes){
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(firstCheckBox));
-        BrowserUtils.waitFor(13);
+
         int count=0;
 
         outer: for (WebElement checkBox : checkBoxes) {

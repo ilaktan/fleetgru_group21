@@ -45,6 +45,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     public void the_user_clicks_car_edit_button() {
         AddEventPage ec = new AddEventPage();
         /**while loop ile click sayısını yönettim*/
+        BrowserUtils.waitFor(3);
         int click_count=0;
         while ((ec.editCar.isDisplayed() || ec.severalInputBoxes.isEmpty())&&click_count<4) {
             ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.editCar);
@@ -58,12 +59,11 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     }
     @Then("the user should be able to edit licence plate with {string}")
     public void the_user_should_be_able_to_edit_licence_plate_with(String licence_plate) {
+        new DashBoardPage().waitUntilLoaderScreenDisappear();
         VehiclesPage vehicles = new VehiclesPage();
+        new WebDriverWait(Driver.get(),90).until(ExpectedConditions.visibilityOf(vehicles.saveAndCloseButton));
         vehicles.licence_plate_inputbox.clear();
         vehicles.licence_plate_inputbox.sendKeys(licence_plate);
-
-        new WebDriverWait(Driver.get(),90).until(ExpectedConditions.visibilityOf(vehicles.saveAndCloseButton));
-        new DashBoardPage().waitUntilLoaderScreenDisappear();
         new Actions(Driver.get()).moveToElement(vehicles.saveAndCloseButton).click().perform();
         int click_count=0;
         while (new VehiclesPage().saveAndCloseButton.isDisplayed()&&click_count<4) {
@@ -95,8 +95,9 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     @Then("the information after save should be verified as {string} and {string}")
     public void the_information_after_save_should_be_verified_as_and(String transmission, String fuelType) {
         AddEventPage ec = new AddEventPage();
-        BrowserUtils.waitFor(1);
-        ec.waitUntilWebElementVisible(ec.saveAndClose, 1000);
+        BrowserUtils.waitFor(5);
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(ec.saveAndClose));
+        //ec.waitUntilWebElementVisible(ec.saveAndClose, 1000);
         BrowserUtils.clickWithJS(ec.saveAndClose);
         System.out.println("information first method");
         ec.waitUntilWebElementVisible(ec.transmissionOutput, 1000);
@@ -109,6 +110,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     @Then("the user could be able to check all the car tags")
     public void the_user_could_be_able_to_check_all_the_car_tags() {
         AddEventPage ec = new AddEventPage();
+        BrowserUtils.waitFor(3);
         ec.clickCheckBoxesAndSave(ec.checkBoxes);
 /**burada tagsOutput un olduğu sayfaya gelmediyse null olarak devam ediyor. Taki visible olana kadar bekle diyorum içindeki metotla*/
         while (ec.tagsOutput == null) {

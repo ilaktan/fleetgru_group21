@@ -24,7 +24,9 @@ public class LoginPage extends BasePage{
 
 
     public void login(String userNameStr, String passwordStr) {
+        userName.clear(); //Joseph:I had add this
         userName.sendKeys(userNameStr);
+        password.clear(); //Joseph:I had add this
         password.sendKeys(passwordStr);
         submit.click();
         // verification that we logged
