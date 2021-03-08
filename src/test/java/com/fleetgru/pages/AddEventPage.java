@@ -3,6 +3,7 @@ package com.fleetgru.pages;
 
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class AddEventPage extends BasePage{
+    @FindBy(xpath = "//div[@class='controls']/input[@type='text']")
+    public List<WebElement> severalInputBoxes;
+
     @FindBy(xpath="//input[@name='custom_entity_type[LicensePlate]']")
     public WebElement licensePlate;
 
@@ -141,8 +145,6 @@ public class AddEventPage extends BasePage{
     public WebElement closeButton;
 
    // Joseph Locators
-   @FindBy(css = "div>a[title='Edit Car']")
-   public WebElement editCar;
 
     @FindBy(xpath = "(//select)[1]")
     public WebElement transmission;
@@ -153,23 +155,11 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath = "//div/button[@type='submit']")
     public WebElement saveAndClose;
 
-    @FindBy(xpath = "//div[@class='controls']/input[@type='text']")
-    public List<WebElement> severalInputBoxes;
-
-    @FindBy(xpath = "(//div[@class='control-label'])[14]")
-    public WebElement transmissionOutput;
-
-    @FindBy(xpath = "(//div[@class='control-label'])[15]")
-    public WebElement fuelTypeOutput;
-
     @FindBy(xpath = "//input[@type='checkbox']")
     public List<WebElement> checkBoxes;
 
     @FindBy(xpath = "(//input[@type='checkbox'])[1]")
     public WebElement firstCheckBox;
-
-    @FindBy(xpath = "(//div[@class='control-label'])[2]")
-    public WebElement tagsOutput;
 
     @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Driver')]")
     public WebElement driverName;
@@ -185,13 +175,12 @@ public class AddEventPage extends BasePage{
 
     public void clickCheckBoxesAndSave(List<WebElement> checkBoxes){
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(firstCheckBox));
-
         int count=0;
-
         outer: for (WebElement checkBox : checkBoxes) {
             if(!checkBox.isSelected()) {
                 checkBox.click();
                 System.out.println("checkBox clicked");
+                count++;
             }
             if(checkBox.isSelected()) {
                 count++;
@@ -202,11 +191,15 @@ public class AddEventPage extends BasePage{
     }
 
     public void saveandClose(){
-        waitUntilWebElementVisible(saveAndClose,1000);
-        if(saveAndClose.isDisplayed()){
-            BrowserUtils.clickWithJS(saveAndClose);
+        AddEventPage ec=new AddEventPage();
+        VehiclesPage v=new VehiclesPage();
+        int click_count=0;
+        while (ec.saveAndClose.isDisplayed()&&click_count<11) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.saveAndClose);
+            System.out.println("Clicked");
+            click_count++;
+            if(v.editCar.isDisplayed()) break;
         }
-        waitUntilWebElementVisible(tagsOutput,2000);
     }
 
 }

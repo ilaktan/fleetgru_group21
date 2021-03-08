@@ -62,7 +62,7 @@ public class LoginStepDefs {
         String password = ConfigurationReader.get(string2);
 
         loginPage.login(username,password);
-        new DashBoardPage().waitUntilLoaderScreenDisappear();
+        //new DashBoardPage().waitUntilLoaderScreenDisappear();
     }
 
     @Then("the title contains {string}")

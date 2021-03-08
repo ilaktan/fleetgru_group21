@@ -24,7 +24,7 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
     public void the_user_navigates_to_to(String tab, String module) {
         DashBoardPage dashBoard = new DashBoardPage();
         dashBoard.navigateToModule(tab, module);
-        dashBoard.waitUntilLoaderScreenDisappear();
+        //dashBoard.waitUntilLoaderScreenDisappear();
         //System.out.println("the user navigates to Fleet to Vehicles");
     }
 
@@ -76,47 +76,9 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         v.waitUntilLoaderScreenDisappear();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
         new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
-
-
-
-   /*
-
-        if(v.eventList.size()>0) {
-
-            BrowserUtils.waitForClickablility(v.eventList.get(0),1);
-            System.out.println("BrowserUtils.waitForClickability(g.eventList.get(0),1); done");
-            BrowserUtils.clickWithJS(v.refreshButton);
-            System.out.println("BrowserUtils.clickWithJS(g.refreshButton);  dont know if refreshed");
-
-            try {
-                v.clickExpandWhenVisible();    //bu expand yapsa da ilk sıra değil ikinci sıradakini expand yapıyor. Kodumdaki bug
-                System.out.println("g.clickExpandWhenVisible(); maybe clicked");
-            }
-            catch (ElementClickInterceptedException click){
-                System.out.println("ElementClickInterceptedException");
-            }
-
-
-            */
             //locator belongs
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
-
-
-
-
             List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
-
-//            while (listEventSubEntries.size()<1){
-//                System.out.println("while (listEventSubEntries.size()<1){  in LOOP");
-//                try {
-//                    wait(500);
-//                    System.out.println("wait(500); WAITING");
-//                    listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
-//                }catch (Exception e){
-//                    System.out.println("GOT EXCEPTION");
-//                }
-//
-//            }
             List<String> expected= Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ","N/A","Feb 25, 2021, 12:00 AM","Feb 25, 2022, 12:00 AM","Yes","Weekly every 1 week on Monday");
             System.out.println("List<String> expected= Arrays.asList(\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"N/A\",\"Feb 25, 2021, 12:00 AM\",\"Feb 25, 2022, 12:00 AM\",\"Yes\",\"Weekly every 1 week on Monday\");   CREATED");
             for(int i=0;i<expected.size();i++){
@@ -124,6 +86,4 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
                 System.out.println((i + 1) + "th element fits");
             }
         }
-
-
 }

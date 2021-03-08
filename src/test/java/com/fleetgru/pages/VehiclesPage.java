@@ -1,7 +1,5 @@
 package com.fleetgru.pages;
 
-
-
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
@@ -74,8 +72,8 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "//input[@data-name='field__license-plate']")
     public WebElement licence_plate_inputbox;
 
-    @FindBy(xpath = "(//button[@type='submit'])[1]")
-    public WebElement saveAndCloseButton;
+    //@FindBy(xpath = "(//button[@type='submit'])[1]")
+    //public WebElement saveAndCloseButton;
 
     @FindAll({@FindBy(css = "div.control-label"),
     @FindBy(xpath = "//div[@class='control-group attribute-row']//div[@class='control-label']")})
@@ -158,13 +156,26 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//table/tbody)/tr/td[4]")
     public List<WebElement> locationColumnDriver;
 
+    @FindBy(xpath = "(//div[@class='control-label'])[14]")
+    public WebElement transmissionOutput;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[15]")
+    public WebElement fuelTypeOutput;
+
+    @FindBy(css = "div>a[title='Edit Car']")
+    public WebElement editCar;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[2]")
+    public WebElement tagsOutput;
+
 //---------------------------
 
     public void clickACarInTheTable() {
         BrowserUtils.waitFor(3);
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
         new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
-        waitUntilLoaderScreenDisappear();
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
 
     }
 

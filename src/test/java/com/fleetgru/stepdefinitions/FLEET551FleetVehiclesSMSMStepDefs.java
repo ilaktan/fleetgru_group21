@@ -44,37 +44,34 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     @When("the user clicks car edit button")
     public void the_user_clicks_car_edit_button() {
         AddEventPage ec = new AddEventPage();
+        VehiclesPage v=new VehiclesPage();
         /**while loop ile click sayısını yönettim*/
-        BrowserUtils.waitFor(3);
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(v.editCar));
         int click_count=0;
-        while ((ec.editCar.isDisplayed() || ec.severalInputBoxes.isEmpty())&&click_count<4) {
-            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.editCar);
-            System.out.println("tried to click");
+        while (click_count<11) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", v.editCar);
+            System.out.println("clicked editCar");
             click_count++;
+            BrowserUtils.waitFor(1);
+            if(ec.saveAndClose.isEnabled()) break;
         }
 
-        if(ec.licencePlateEntry.isEnabled()&&ec.licencePlateEntry.isDisplayed()){
-            Assert.assertTrue(ec.licencePlateEntry.isDisplayed());
-        }
     }
     @Then("the user should be able to edit licence plate with {string}")
     public void the_user_should_be_able_to_edit_licence_plate_with(String licence_plate) {
         new DashBoardPage().waitUntilLoaderScreenDisappear();
-        VehiclesPage vehicles = new VehiclesPage();
-        new WebDriverWait(Driver.get(),90).until(ExpectedConditions.visibilityOf(vehicles.saveAndCloseButton));
-        vehicles.licence_plate_inputbox.clear();
-        vehicles.licence_plate_inputbox.sendKeys(licence_plate);
-        new Actions(Driver.get()).moveToElement(vehicles.saveAndCloseButton).click().perform();
-        int click_count=0;
-        while (new VehiclesPage().saveAndCloseButton.isDisplayed()&&click_count<4) {
-            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", new VehiclesPage().saveAndCloseButton);
-            System.out.println("Clicked");
-            click_count++;
-        }
-        //new WebDriverWait(Driver.get(),90).until(ExpectedConditions.invisibilityOf(vehicles.saveAndCloseButton));
-        new WebDriverWait(Driver.get(),90).until(ExpectedConditions.visibilityOf(new AddEventPage().editCar));
-        System.out.println(vehicles.carGeneralInformationValues.get(0).getText());
-        Assert.assertEquals(licence_plate, vehicles.carGeneralInformationValues.get(0).getText());
+        VehiclesPage v = new VehiclesPage();
+        AddEventPage ec=new AddEventPage();
+        new WebDriverWait(Driver.get(),90).until(ExpectedConditions.visibilityOf(ec.saveAndClose));
+        v.licence_plate_inputbox.clear();
+        v.licence_plate_inputbox.sendKeys(licence_plate);
+        ec.saveandClose();
+
+        BrowserUtils.waitFor(1);
+        Assert.assertTrue("Entity saved is printed",Driver.get().findElement(By.xpath("//div[@class='flash-messages-holder']//div[@class='message']")).isDisplayed());
+
+        System.out.println(v.carGeneralInformationValues.get(0).getText());
+        Assert.assertEquals(licence_plate, v.carGeneralInformationValues.get(0).getText());
 
     }
 
@@ -82,43 +79,55 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
     public void the_user_should_be_able_to_select_Transmission_type_as(String transmission) {
         BrowserUtils.waitForVisibility(new AddEventPage().transmission, 3);
         new AddEventPage().selectDropdown(new AddEventPage().transmission).selectByVisibleText(transmission);
-        System.out.println("transmission type is selected");
+        //System.out.println("transmission type is selected");
     }
 
     @Then("the user should be able to select Fuel type as {string}")
     public void the_user_should_be_able_to_select_Fuel_type_as(String fuelType) {
         BrowserUtils.waitForVisibility(new AddEventPage().fuelType, 3);
         new AddEventPage().selectDropdown(new AddEventPage().fuelType).selectByVisibleText(fuelType);
-        System.out.println("fueltype is selected");
+        //System.out.println("fueltype is selected");
     }
 
     @Then("the information after save should be verified as {string} and {string}")
     public void the_information_after_save_should_be_verified_as_and(String transmission, String fuelType) {
-        AddEventPage ec = new AddEventPage();
+        VehiclesPage v = new VehiclesPage();
+        AddEventPage ec=new AddEventPage();
         BrowserUtils.waitFor(5);
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(ec.saveAndClose));
-        //ec.waitUntilWebElementVisible(ec.saveAndClose, 1000);
-        BrowserUtils.clickWithJS(ec.saveAndClose);
-        System.out.println("information first method");
-        ec.waitUntilWebElementVisible(ec.transmissionOutput, 1000);
-        Assert.assertTrue(ec.transmissionOutput.getText().equals(transmission));
+
+        int click_count=0;
+        while ((ec.saveAndClose.isDisplayed() || ec.severalInputBoxes.size()>0)&&click_count<2) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.saveAndClose);
+            System.out.println("click saveandclose");
+            click_count++;
+        }
+        //System.out.println("information first method");
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(v.editCar));
+        Assert.assertTrue(v.transmissionOutput.getText().equals(transmission));
         System.out.println("information \"Automatic\" assert");
-        Assert.assertTrue(ec.fuelTypeOutput.getText().equals(fuelType));
+        Assert.assertTrue(v.fuelTypeOutput.getText().equals(fuelType));
         System.out.println("information \"Diesel\" assert method");
     }
 
     @Then("the user could be able to check all the car tags")
     public void the_user_could_be_able_to_check_all_the_car_tags() {
         AddEventPage ec = new AddEventPage();
-        BrowserUtils.waitFor(3);
+        VehiclesPage v = new VehiclesPage();
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='checkbox']")));
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
         ec.clickCheckBoxesAndSave(ec.checkBoxes);
-/**burada tagsOutput un olduğu sayfaya gelmediyse null olarak devam ediyor. Taki visible olana kadar bekle diyorum içindeki metotla*/
-        while (ec.tagsOutput == null) {
-            ec.waitUntilWebElementVisible(ec.tagsOutput, 100);
+
+    /**
+    burada tagsOutput un olduğu sayfaya gelmediyse null olarak devam ediyor. Taki visible olana kadar bekle diyorum içindeki metotla
+        while (v.tagsOutput == null) {
+            ec.waitUntilWebElementVisible(v.tagsOutput, 100);
         }
-        System.out.println(ec.tagsOutput.getText());
+    */
+        new WebDriverWait(Driver.get(),30).until(ExpectedConditions.visibilityOf(v.tagsOutput));
+        System.out.println(v.tagsOutput.getText());
         System.out.println("Junior ,  Senior ,  Employee Car ,  Purchased ,  Compact ,  Sedan ,  Convertible");
-        Assert.assertTrue(ec.tagsOutput.getText().equals("Junior ,  Senior ,  Employee Car ,  Purchased ,  Compact ,  Sedan ,  Convertible"));
+        Assert.assertTrue(v.tagsOutput.getText().equals("Junior ,  Senior ,  Employee Car ,  Purchased ,  Compact ,  Sedan ,  Convertible"));
     }
 
     @Then("the user should not be able to enter driver name length more than {int} characters")
