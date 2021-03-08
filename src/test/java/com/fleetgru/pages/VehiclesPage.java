@@ -153,6 +153,9 @@ public class VehiclesPage extends BasePage{
     @FindBy (xpath = "(//table/tbody)/tr/td[5]")
     public List<WebElement> locationColumn;
 
+    @FindBy(xpath = "(//table/tbody)/tr/td[4]")
+    public List<WebElement> locationColumnDriver;
+
 //---------------------------
 
     public void clickACarInTheTable() {

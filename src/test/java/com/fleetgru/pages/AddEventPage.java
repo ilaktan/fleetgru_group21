@@ -27,7 +27,6 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath="(//input[@tabindex='-1'])[1]")
     public WebElement addMake;
 
-
     @FindBy(xpath="(//button[@*='open-dialog-widget'])[2]")
     public WebElement addButtonMake;
 
@@ -45,10 +44,8 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath="//label/input[@value='Oro_Bundle_CalendarBundle_Entity_CalendarEvent']")
     public WebElement calendarEventOption;
 
-
     @FindBy(css="div.details")
     public List<WebElement> FilteredActivityTypeList;
-
 
     @FindBy(css="div.btn.filter-criteria-selector.oro-drop-opener.oro-dropdown-toggle.filter-default-value")
     public WebElement dataRangeButton;
