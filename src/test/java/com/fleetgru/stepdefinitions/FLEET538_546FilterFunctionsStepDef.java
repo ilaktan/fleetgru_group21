@@ -156,17 +156,17 @@ public class FLEET538_546FilterFunctionsStepDef {
         JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
         executor.executeScript("arguments[0].click();", vehicle.selectAllButton);
 
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(4);
     }
 
     @Then("following columns should see on the webpage")
     public void following_columns_should_see_on_the_webpage(List<String> expectedColumnList) {
-
+        BrowserUtils.waitFor(5);
         List<String> actualColumnList = BrowserUtils.getElementsText(vehicle.tableColumnSize);
-
-        Assert.assertTrue("verify column list", actualColumnList.containsAll(expectedColumnList));
         System.out.println("actualColumnList = " + actualColumnList);
         System.out.println("ExpectedColumnList = " + expectedColumnList);
+        Assert.assertTrue("verify column list", actualColumnList.containsAll(expectedColumnList));
+
     }
 
     @When("the user click the filter button")

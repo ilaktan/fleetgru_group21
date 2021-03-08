@@ -1,5 +1,5 @@
-@storemanagerfilter
-Feature: Filter Functions
+@filter
+Feature: Filter Functions as a store manager
 
   Background:
     Given the user is on the login page
@@ -33,14 +33,14 @@ Feature: Filter Functions
       | Power (KW)                |
 
 
-  Scenario: Use Grid Setting Button -Search Valid item
+  Scenario: Use Grid Setting Button as a store manager -Search Valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     And the user searches column name "Driver" in the Quick Search input
     Then the system should display "Driver" column under dropdown menu.
 
 
-  Scenario: Use Grid Setting Button -Search invalid item
+  Scenario: Use Grid Setting Button as a store manager -Search invalid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     And the user searches column name "Idd" in the Quick Search input
@@ -48,14 +48,14 @@ Feature: Filter Functions
 
 
 
-  Scenario: Using Refresh button
+  Scenario: Using Refresh button as a store manager
     When the user navigates to "Fleet" to "Vehicles"
     When the user go to page "4"
     And the user click the refresh button
     Then page input should be "4"
 
 
-  Scenario: Using Reset button
+  Scenario: Using Reset button as a store manager
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     And user click the "Id" column
@@ -65,7 +65,7 @@ Feature: Filter Functions
 
 
 
-  Scenario: Using Grid Setting Button -Click Unclick the Column option
+  Scenario: Using Grid Setting Button as a store manager -Click Unclick the Column option
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     And user click the "Id" column
@@ -74,35 +74,8 @@ Feature: Filter Functions
     Then the system should not display "Tags" column on the webpage
 
 
-  Scenario: Using Grid Setting Button -Click Select All button
-    When the user navigates to "Fleet" to "Vehicles"
-    When the user click the Grid Setting button
-    And user click the Select All button
-    Then following columns should see on the webpage
-      | ID                        |
-      | LICENSE PLATE             |
-      | TAGS                      |
-      | DRIVER                    |
-      | LOCATION                  |
-      | CHASSIS NUMBER            |
-      | MODEL YEAR                |
-      | LAST ODOMETER             |
-      | IMMATRICULATION DATE      |
-      | FIRST CONTRACT DATE       |
-      | CVVI                      |
-      | SEATS NUMBER              |
-      | DOORS NUMBER              |
-      | COLOR                     |
-      | TRANSMISSION              |
-      | FUEL TYPE                 |
-      | CO2 EMISSIONS             |
-      | HORSEPOWER                |
-      | HORSEPOWER TAXATION       |
-      | POWER (KW)                |
 
-
-
-  Scenario: Manage Filter button options
+  Scenario: Manage Filter button options as a store manager
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
     And the user click the manage filter button
@@ -129,7 +102,7 @@ Feature: Filter Functions
 
 
 
-  Scenario: Use Manage-Filter Button - Searching invalid item
+  Scenario: Use Manage-Filter Button as a store manager - Searching invalid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
     And the user click the manage filter button
@@ -137,7 +110,7 @@ Feature: Filter Functions
     Then verifies driver not displayed
 
 
-  Scenario: Use Manage-Filter Button - Searching valid item
+  Scenario: Use Manage-Filter Button as a store manager - Searching valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
     And the user click the manage filter button
@@ -145,7 +118,7 @@ Feature: Filter Functions
     Then the system should display the "Driver" option under dropdown menu
 
 
-  Scenario: Filters sign functionality
+  Scenario: Filters sign functionality as a store manager
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
     And the user click the manage filter button
@@ -166,7 +139,7 @@ Feature: Filter Functions
       |Is Not Empty    |
 
 
-  Scenario: Using the Manage Filter -Contains button with valid item
+  Scenario: Using the Manage Filter as a store manager -Contains button with valid item
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the filter button
     And the user click the manage filter button
