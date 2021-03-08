@@ -13,7 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.List;
 
-public class FLEET538FilterFunctionsStepDef {
+public class FLEET538_546FilterFunctionsStepDef {
 
     DashBoardPage dashboardPage = new DashBoardPage();
 
@@ -113,9 +113,9 @@ public class FLEET538FilterFunctionsStepDef {
 
     @When("user click the {string} column")
     public void user_click_the_column(String columnName) {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
         vehicle.clickColumn(columnName);
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
     }
 
     @Then("the system should display {string} column on the webpage")
@@ -277,9 +277,9 @@ public class FLEET538FilterFunctionsStepDef {
 
     @When("the search {string} in the search box")
     public void the_search_in_the_search_box(String string) {
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
         vehicle.filterSelectorSearchInput.sendKeys(string);
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
         vehicle.updateButton.click();
     }
 
@@ -295,6 +295,14 @@ public class FLEET538FilterFunctionsStepDef {
 
         Assert.assertTrue(actual.contains(expected));
 
+    }
+    @Then("the system should only show records that contain the Location {string} in the truck driver")
+    public void the_system_should_only_show_records_that_contain_the_Location_in_the_truck_driver(String expected) {
+        BrowserUtils.waitFor(2);
+        List<String> actual = BrowserUtils.getElementsText(vehicle.locationColumnDriver);
+        System.out.println("actual = " + actual);
+        System.out.println("expected = " + expected);
+        Assert.assertTrue(actual.contains(expected));
     }
 
 }
