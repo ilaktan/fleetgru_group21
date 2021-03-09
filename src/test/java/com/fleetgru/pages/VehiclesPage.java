@@ -224,4 +224,65 @@ public class VehiclesPage extends BasePage{
     }
 /*Emine-*/
 
+   // -------------//
+    //Cansu
+@FindBy(xpath = "//button[@class='sidebar__add-widget']")
+public WebElement plusSign;
+
+    @FindBy(xpath = "(//h3)[2]")
+    public WebElement recentEmailTitle;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement keywordInputBox;
+
+    @FindBy(xpath = "(//td/a)[2]")
+    public WebElement addBtnForRecent;
+
+    @FindBy(xpath = "(//a[@class='btn widget-picker-add-btn btn-primary'])[2]")
+    public WebElement addBtnForStickyNotes;
+
+    @FindBy(xpath = "(//a[@class=\"btn widget-picker-add-btn btn-primary\"])[3]")
+    public WebElement addBtnForTaskList;
+
+    @FindBy(xpath = "//span[@class='added']")
+    public WebElement addedSign;
+
+    @FindBy(xpath = "(//a[@class='btn cancel'])[2]")
+    public WebElement closeBtn;
+
+    @FindBy(css = "a.close ")
+    public WebElement closeGridSetBtn;
+
+    @FindBy(xpath = "(//i[@title='Recent emails'])[1]")
+    public WebElement recentEmailWidget;
+
+    @FindBy(css = "div.sidebar-widget__icon")
+    public WebElement stickNotesWidget;
+
+    @FindBy(css = "div.sidebar-widget__icon")
+    public WebElement taskListWidget;
+
+    @FindBy(xpath = "//i[@class='fa-thumb-tack hide-text']")
+    public WebElement pinBtn;
+
+    @FindBy(xpath = "(//a[@title='Car - Entities - System - Car - Entities - System'])[1]")
+    public WebElement pinnedPage;
+
+    @FindBy(xpath = "//div//a[contains(text(), 'Learn how to use this space')]")
+    public WebElement warningText;
+
+    @FindBy(xpath = "//i[@class='fa-star hide-text']")
+    public WebElement favoriteSignBtn;
+
+    @FindBy(css = "i.fa-bars")
+    public WebElement dropdownMenu;
+
+    @FindBy(xpath = "//a[@href='#favorite-content']")
+    public WebElement Favorites;
+
+    @FindBy(xpath = "//button[@class='close']/following-sibling::a[1]")
+    public WebElement favoritePages;
+
+    // @FindBy (xpath = "//div[@class='dot-menu-empty-message']")
+    // public WebElement noItemsMessage;
 }
