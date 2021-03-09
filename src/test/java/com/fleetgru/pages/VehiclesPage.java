@@ -111,7 +111,7 @@ public class VehiclesPage extends BasePage{
     @FindBy (xpath = "//div//a[@title='Refresh']")
     public WebElement refreshFilterButton;
 
-    @FindBy (xpath = "//div//a[@title='Reset']")
+    @FindBy (css = "div.oro-dropdown-toggle .fa-close")
     public WebElement resetButton;
 
     @FindBy (xpath = "//table//thead[@class='grid-header']/tr/th")
@@ -156,8 +156,53 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//table/tbody)/tr/td[4]")
     public List<WebElement> locationColumnDriver;
 
-//---------------------------
+//ME---------------------------
+@FindBy(xpath = "//tbody/tr[td='12,345']")
+public WebElement car1;
 
+    @FindBy(xpath = "//table//tr[4]")
+    public WebElement car4;
+
+    @FindBy(xpath = "//table//tr[6]")
+    public WebElement car6;
+
+    @FindBy(xpath = "//table//tr[19]")
+    public WebElement car19;
+
+    @FindBy (xpath= "//a[.='Activity']")
+    public  WebElement activity;
+
+    @FindBy (css = "div.oro-dropdown-toggle")
+    public WebElement dateRange;
+
+    @FindBy(xpath = "//i[@class='date']")
+    public WebElement dataRangeAttribute;
+
+    @FindBy (css = "div.filter-start-date [placeholder='Choose a date']")
+    public WebElement chooseDateStart;
+
+    @FindBy (css = "div.filter-start-date [placeholder='time']")
+    public WebElement timeStart;
+
+    @FindBy (css = "div.filter-end-date [placeholder='Choose a date']")
+    public WebElement chooseDateEnd;
+
+    @FindBy(xpath ="//input[@value]")
+    public List <WebElement> activityDropDown;
+
+    @FindBy (css = "div.items > div:nth-of-type(1) .accordion-heading")
+    public  WebElement activityInside;
+
+    @FindBy (xpath = "//i[@class='fa-refresh hide-text']")
+    public  WebElement refresh;
+
+    @FindBy (css = "a[data-action-name='goto_next']")
+    public WebElement olderButton;
+
+    @FindBy (css = "a[data-action-name='goto_previous']")
+    public WebElement newerButton;
+
+    //-------------------ME
     public void clickACarInTheTable() {
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
         new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
