@@ -33,7 +33,7 @@ public class Hooks {
 
         //log out
         new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("#user-menu>a"))).click().perform();
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(3);
         Driver.get().findElement(By.cssSelector("#user-menu ul .no-hash")).click();
         //close Driver
         Driver.closeDriver();

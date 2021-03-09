@@ -1,3 +1,5 @@
+
+@FLEET-598
 Feature: Login functionality for 3 different users(sales manager, store manager, truck driver)
 
 	#{color:#00875a}*User Story :* {color}
@@ -12,15 +14,15 @@ Feature: Login functionality for 3 different users(sales manager, store manager,
 	#_2-User can not login with invalid credentials._
 	Background:
 		Given the user is on the login page
-	@FLEET-598
+
 		Scenario: Login as a driver
 		When the user enters the driver information
 		Then the user should be able to login
-	@FLEET-598
+
 		Scenario:  Login as a sales manager
 		When the user enters the sales manager information
 		Then the user should be able to login
-	@FLEET-598
+
 		Scenario: Login as a store manager
 		When the user enters the store manager information
 		Then the user should be able to login
