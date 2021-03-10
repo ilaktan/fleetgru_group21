@@ -93,11 +93,11 @@ public class FLEET538_546FilterFunctionsStepDef {
 
     @When("the user click the reset button")
     public void the_user_click_the_reset_button() {
-
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
+        vehicle.closeGridSetting.click();
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.get();
         javascriptExecutor.executeScript("arguments[0].click();", vehicle.resetButton);
-
+        BrowserUtils.waitFor(2);
     }
 
     @Then("page input should be {string}")
@@ -115,7 +115,7 @@ public class FLEET538_546FilterFunctionsStepDef {
     public void user_click_the_column(String columnName) {
         BrowserUtils.waitFor(3);
         vehicle.clickColumn(columnName);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(1);
     }
 
     @Then("the system should display {string} column on the webpage")
