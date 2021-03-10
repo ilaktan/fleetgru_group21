@@ -96,7 +96,7 @@ public class FLEET538_546FilterFunctionsStepDef {
         BrowserUtils.waitFor(2);
         vehicle.closeGridSetting.click();
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.get();
-        javascriptExecutor.executeScript("arguments[0].click();", vehicle.resetButton);
+        javascriptExecutor.executeScript("arguments[0].click();", vehicle.resetButton2);
         BrowserUtils.waitFor(2);
     }
 

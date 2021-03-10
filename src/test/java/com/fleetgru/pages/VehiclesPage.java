@@ -331,6 +331,12 @@ public WebElement plusSign;
     // @FindBy (xpath = "//div[@class='dot-menu-empty-message']")
     // public WebElement noItemsMessage;
 
+    /*-EC */
     @FindBy(xpath = "//span[@class='close']")
     public WebElement closeGridSetting;
+
+    @FindBy (xpath = "//div//a[@title='Reset']")
+    public WebElement resetButton2;
+    /* EC-*/
+
 }
