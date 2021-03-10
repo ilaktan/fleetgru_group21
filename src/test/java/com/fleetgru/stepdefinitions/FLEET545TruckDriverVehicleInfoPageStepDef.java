@@ -22,7 +22,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
     @Then("the sub-title should be {string}")
     public void the_sub_title_should_be_(String expectedSubTitle) {
         //BrowserUtils.waitForVisibility(dashBoardPage.pageSubTitle, 5);
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
         Assert.assertEquals("verify page subtitle", expectedSubTitle, dashBoardPage.getPageSubTitle());
         System.out.println(dashBoardPage.getPageSubTitle());
         System.out.println(expectedSubTitle);
