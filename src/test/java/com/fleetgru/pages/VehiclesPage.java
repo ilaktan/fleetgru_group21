@@ -337,6 +337,9 @@ public WebElement plusSign;
 
     @FindBy (xpath = "//div//a[@title='Reset']")
     public WebElement resetButton2;
+
+    @FindBy (xpath = "//div[@class='column-manager-title']")
+    public WebElement gridSettingsButtonTitle;
     /* EC-*/
 
 }
