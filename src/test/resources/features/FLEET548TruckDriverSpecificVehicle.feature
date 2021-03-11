@@ -8,7 +8,7 @@ Feature: Truck driver specific info
      And the user goes to Vehicles page
 
 
-  @FLEET-397 @FLEET-396
+  @FLEET-397 @FLEET-396 @FLEET-648
   Scenario:As a Storemanager/SalesManager I should be able to create car
      Then the user sees all informations about specific car
 
