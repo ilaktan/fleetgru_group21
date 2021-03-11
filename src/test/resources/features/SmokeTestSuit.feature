@@ -25,12 +25,5 @@ Feature: Smoke Suit
     When the user click the filter button
     Then the user should see the Manage Filters button
 
-  @FLEET-658 @FLEET-639
-  Scenario: Filter Function as a Truck Driver
-    Given the user logged in successfully as a "truck driver"
-    When the user navigates to "Fleet" "Vehicles"
-    When the user click the Grid Setting button
-    Then should see grid setting title
-    When the user click the filter button
-    Then the user should see the Manage Filters button
+
 
