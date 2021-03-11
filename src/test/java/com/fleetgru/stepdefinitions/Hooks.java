@@ -7,9 +7,7 @@ import com.fleetgru.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
@@ -32,9 +30,16 @@ public class Hooks {
         }
 
         //log out
-        new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("#user-menu>a"))).click().perform();
-        BrowserUtils.waitFor(3);
-        Driver.get().findElement(By.cssSelector("#user-menu ul .no-hash")).click();
+
+        try{
+            new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("#user-menu>a"))).click().perform();
+            BrowserUtils.waitFor(3);
+            Driver.get().findElement(By.cssSelector("#user-menu ul .no-hash")).click();
+        }catch(NoSuchElementException e){
+
+        }
+
+
         //close Driver
         Driver.closeDriver();
 

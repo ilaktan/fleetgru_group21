@@ -45,3 +45,7 @@ Feature: Smoke Suit
     And the user logs in using "driver_username" and "driver_password"
     And the user goes to Vehicles page
     Then the user sees all informations about specific car
+
+
+
+
