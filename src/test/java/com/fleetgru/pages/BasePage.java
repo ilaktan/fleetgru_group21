@@ -36,6 +36,9 @@ public abstract class  BasePage {
     @FindBy(linkText = "My User")
     public WebElement myUser;
 
+    @FindBy(xpath = "//a[.='Logout']")
+    public WebElement logout;
+
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }

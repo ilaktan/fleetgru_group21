@@ -5,6 +5,7 @@ import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -96,14 +97,16 @@ public class AddEventPage extends BasePage{
     public List<WebElement> eventList;
 
     @FindBy(xpath = "(//a[contains(@href,'#accordion-item')][ @class='accordion-icon accordion-toggle collapsed'])[1]") //css = "a[data-toggle='collapse']"
-    public WebElement lastExpandButtonCollapsed;
+    public List<WebElement> lastExpandButtonsCollapsed;
     //public List<WebElement> expandButtons;
 
     //seen after event items expanded
-    @FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")
+    //
+    @FindAll({@FindBy(xpath = "//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div"),
+    @FindBy(xpath = "//div[@class='responsive-block']//div[@class='control-label']")})
     public List<WebElement> eventSubEntries;
 
-    ///Burada refresh vardi. Sildim.
+
 
     //Title
     @FindBy(xpath = "//input[@data-name='field__title']")
