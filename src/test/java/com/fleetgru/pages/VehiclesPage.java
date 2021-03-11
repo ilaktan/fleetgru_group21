@@ -181,9 +181,6 @@ public WebElement car1;
     @FindBy (css = "div.filter-start-date [placeholder='Choose a date']")
     public WebElement chooseDateStart;
 
-    @FindBy (css = "div.filter-start-date [placeholder='time']")
-    public WebElement timeStart;
-
     @FindBy (css = "div.filter-end-date [placeholder='Choose a date']")
     public WebElement chooseDateEnd;
 
@@ -201,6 +198,9 @@ public WebElement car1;
 
     @FindBy (css = "a[data-action-name='goto_previous']")
     public WebElement newerButton;
+
+    @FindBy(xpath = "//a[.='Close']")
+    public WebElement closeButton;
 
     //-------------------ME
     public void clickACarInTheTable() {
