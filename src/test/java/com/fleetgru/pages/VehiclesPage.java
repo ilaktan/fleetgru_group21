@@ -1,7 +1,6 @@
 package com.fleetgru.pages;
 
-
-
+import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -73,10 +72,11 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "//input[@data-name='field__license-plate']")
     public WebElement licence_plate_inputbox;
 
-    @FindBy(xpath = "(//button[@type='submit'])[1]")
-    public WebElement saveAndCloseButton;
+    //@FindBy(xpath = "(//button[@type='submit'])[1]")
+    //public WebElement saveAndCloseButton;
 
-    @FindBy(css = "div.control-label")
+    @FindAll({@FindBy(css = "div.control-label"),
+    @FindBy(xpath = "//div[@class='control-group attribute-row']//div[@class='control-label']")})
     public List<WebElement> carGeneralInformationValues;
 
     @FindAll({@FindBy(xpath = "(//div[@class='pull-right']//a)[1]"),
@@ -156,6 +156,21 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//table/tbody)/tr/td[4]")
     public List<WebElement> locationColumnDriver;
 
+//JS
+    @FindBy(xpath = "(//div[@class='control-label'])[14]")
+    public WebElement transmissionOutput;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[15]")
+    public WebElement fuelTypeOutput;
+
+    @FindBy(css = "div>a[title='Edit Car']")
+    public WebElement editCar;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[2]")
+    public WebElement tagsOutput;
+
+//JS---------------------------
+
 //ME---------------------------
 @FindBy(xpath = "//tbody/tr[td='12,345']")
 public WebElement car1;
@@ -199,14 +214,17 @@ public WebElement car1;
     @FindBy (css = "a[data-action-name='goto_next']")
     public WebElement olderButton;
 
+
     @FindBy (css = "a[data-action-name='goto_previous']")
     public WebElement newerButton;
 
     //-------------------ME
     public void clickACarInTheTable() {
+        BrowserUtils.waitFor(3);
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
         new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
-        waitUntilLoaderScreenDisappear();
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
 
     }
 

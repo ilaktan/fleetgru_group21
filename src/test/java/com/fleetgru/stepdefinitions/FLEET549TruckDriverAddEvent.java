@@ -24,8 +24,8 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
     public void the_user_navigates_to_to(String tab, String module) {
         DashBoardPage dashBoard = new DashBoardPage();
         dashBoard.navigateToModule(tab, module);
-        dashBoard.waitUntilLoaderScreenDisappear();
-        System.out.println("the user navigates to Fleet to Vehicles");
+        //dashBoard.waitUntilLoaderScreenDisappear();
+        //System.out.println("the user navigates to Fleet to Vehicles");
     }
 
     @When("the user clicks any car in the list")
@@ -77,7 +77,9 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         AddEventPage v=new AddEventPage();
         v.waitUntilLoaderScreenDisappear();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
-        new Actions(Driver.get()).moveToElement(v.lastExpandButtonsCollapsed.get(0)).click().perform();
+
+        new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+
             //locator belongs
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
             List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
@@ -88,6 +90,4 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
                 System.out.println((i + 1) + "th element fits");
             }
         }
-
-
 }
