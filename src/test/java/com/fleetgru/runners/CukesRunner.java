@@ -14,8 +14,7 @@ import org.junit.runner.RunWith;
         glue = "com/fleetgru/stepdefinitions",
         dryRun = false,
 
-   
-        tags = "@FLEET-646"
+        tags = "@FLEET-659"
 
 )
 public class CukesRunner {
