@@ -25,3 +25,5 @@ Feature: Smoke Suit
     When the user click the filter button
     Then the user should see the Manage Filters button
 
+
+
