@@ -35,9 +35,10 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
 
     @When("clicks the -Add Event- button")
     public void clicks_the_Add_Event_button() {
-        BrowserUtils.waitFor(3);
-        //BrowserUtils.waitForClickablility(new Vehicles().addEvent,1);
-        //just to click one time only
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("h1.oro-subtitle")));
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//h1[text()='Cars']")));
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='container-fluid']//a)[1]")));
+        BrowserUtils.waitFor(5);
         while(new AddEventPage().titleOfAddEvent.size()<1) {
             BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
         }
@@ -65,6 +66,7 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         addEventPage.saveButton.click();
         //BrowserUtils.waitForPresenceOfElement(By.cssSelector("div[class='message-item message']>strong"),10 );
         //BrowserUtils.waitForVisibility(addEvent.savedTitleOnGeneralInformationPage,5);
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message-item message']")));
         addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);
         Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", addEventPage.savedTitleOnGeneralInformationPage.getText());
         System.out.println("end of the user should edit the required fields step");
@@ -75,7 +77,9 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         AddEventPage v=new AddEventPage();
         v.waitUntilLoaderScreenDisappear();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
+
         new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+
             //locator belongs
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
             List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);

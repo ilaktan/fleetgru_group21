@@ -93,11 +93,11 @@ public class FLEET538_546FilterFunctionsStepDef {
 
     @When("the user click the reset button")
     public void the_user_click_the_reset_button() {
-
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(2);
+        vehicle.closeGridSetting.click();
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.get();
-        javascriptExecutor.executeScript("arguments[0].click();", vehicle.resetButton);
-
+        javascriptExecutor.executeScript("arguments[0].click();", vehicle.resetButton2);
+        BrowserUtils.waitFor(2);
     }
 
     @Then("page input should be {string}")
@@ -115,7 +115,7 @@ public class FLEET538_546FilterFunctionsStepDef {
     public void user_click_the_column(String columnName) {
         BrowserUtils.waitFor(3);
         vehicle.clickColumn(columnName);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(1);
     }
 
     @Then("the system should display {string} column on the webpage")
@@ -156,17 +156,17 @@ public class FLEET538_546FilterFunctionsStepDef {
         JavascriptExecutor executor = (JavascriptExecutor) Driver.get();
         executor.executeScript("arguments[0].click();", vehicle.selectAllButton);
 
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(4);
     }
 
     @Then("following columns should see on the webpage")
     public void following_columns_should_see_on_the_webpage(List<String> expectedColumnList) {
-
+        BrowserUtils.waitFor(5);
         List<String> actualColumnList = BrowserUtils.getElementsText(vehicle.tableColumnSize);
-
-        Assert.assertTrue("verify column list", actualColumnList.containsAll(expectedColumnList));
         System.out.println("actualColumnList = " + actualColumnList);
         System.out.println("ExpectedColumnList = " + expectedColumnList);
+        Assert.assertTrue("verify column list", actualColumnList.containsAll(expectedColumnList));
+
     }
 
     @When("the user click the filter button")

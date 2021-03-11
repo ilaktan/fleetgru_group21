@@ -111,7 +111,7 @@ public class VehiclesPage extends BasePage{
     @FindBy (xpath = "//div//a[@title='Refresh']")
     public WebElement refreshFilterButton;
 
-    @FindBy (xpath = "//div//a[@title='Reset']")
+    @FindBy (css = "div.oro-dropdown-toggle .fa-close")
     public WebElement resetButton;
 
     @FindBy (xpath = "//table//thead[@class='grid-header']/tr/th")
@@ -156,6 +156,7 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//table/tbody)/tr/td[4]")
     public List<WebElement> locationColumnDriver;
 
+//JS
     @FindBy(xpath = "(//div[@class='control-label'])[14]")
     public WebElement transmissionOutput;
 
@@ -168,8 +169,56 @@ public class VehiclesPage extends BasePage{
     @FindBy(xpath = "(//div[@class='control-label'])[2]")
     public WebElement tagsOutput;
 
-//---------------------------
+//JS---------------------------
 
+//ME---------------------------
+@FindBy(xpath = "//tbody/tr[td='12,345']")
+public WebElement car1;
+
+    @FindBy(xpath = "//table//tr[4]")
+    public WebElement car4;
+
+    @FindBy(xpath = "//table//tr[6]")
+    public WebElement car6;
+
+    @FindBy(xpath = "//table//tr[19]")
+    public WebElement car19;
+
+    @FindBy (xpath= "//a[.='Activity']")
+    public  WebElement activity;
+
+    @FindBy (css = "div.oro-dropdown-toggle")
+    public WebElement dateRange;
+
+    @FindBy(xpath = "//i[@class='date']")
+    public WebElement dataRangeAttribute;
+
+    @FindBy (css = "div.filter-start-date [placeholder='Choose a date']")
+    public WebElement chooseDateStart;
+
+    @FindBy (css = "div.filter-start-date [placeholder='time']")
+    public WebElement timeStart;
+
+    @FindBy (css = "div.filter-end-date [placeholder='Choose a date']")
+    public WebElement chooseDateEnd;
+
+    @FindBy(xpath ="//input[@value]")
+    public List <WebElement> activityDropDown;
+
+    @FindBy (css = "div.items > div:nth-of-type(1) .accordion-heading")
+    public  WebElement activityInside;
+
+    @FindBy (xpath = "//i[@class='fa-refresh hide-text']")
+    public  WebElement refresh;
+
+    @FindBy (css = "a[data-action-name='goto_next']")
+    public WebElement olderButton;
+
+
+    @FindBy (css = "a[data-action-name='goto_previous']")
+    public WebElement newerButton;
+
+    //-------------------ME
     public void clickACarInTheTable() {
         BrowserUtils.waitFor(3);
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
@@ -178,6 +227,10 @@ public class VehiclesPage extends BasePage{
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
 
     }
+
+
+    @FindBy(xpath = "(//div[@class='container-fluid']//a)[1]")
+    public WebElement generalTab;
 
 
 //--Emine and Cansu----------------------
@@ -203,5 +256,108 @@ public class VehiclesPage extends BasePage{
         Driver.get().findElement(By.xpath(xpath)).click();
     }
 //--------------------------
+
+/*-Emine*/
+    @FindBy(xpath = "(//a[@href='#'])[23]")
+    public WebElement forwardButton;
+
+    @FindBy(xpath = "(//a[@href='#'])[22]")
+    public WebElement backButton;
+
+    @FindBy (xpath = "//button[@data-toggle='dropdown']")
+    public WebElement perPageButton;
+
+    @FindBy (xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr")
+    public List<WebElement> tableRowSize;
+
+    @FindBy (xpath = "(//a[@data-toggle='dropdown'])[4]")
+    public WebElement exportGridButton;
+
+    @FindBy (xpath = "//div[@class='message']")
+    public WebElement successMessage;
+
+
+    public void selectPerPageItem(String item){
+        String xpath = "//ul//a[@class='dropdown-item'][normalize-space()='"+item+"']";
+        Driver.get().findElement(By.xpath(xpath)).click();
+    }
+    public void selectFormat(String formatType){
+        String xpath = "//a[@title='"+formatType+"']";
+        Driver.get().findElement(By.xpath(xpath)).click();
+    }
+/*Emine-*/
+
+   // -------------//
+    //Cansu
+@FindBy(xpath = "//button[@class='sidebar__add-widget']")
+public WebElement plusSign;
+
+    @FindBy(xpath = "(//h3)[2]")
+    public WebElement recentEmailTitle;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement keywordInputBox;
+
+    @FindBy(xpath = "(//td/a)[2]")
+    public WebElement addBtnForRecent;
+
+    @FindBy(xpath = "(//a[@class='btn widget-picker-add-btn btn-primary'])[2]")
+    public WebElement addBtnForStickyNotes;
+
+    @FindBy(xpath = "(//a[@class=\"btn widget-picker-add-btn btn-primary\"])[3]")
+    public WebElement addBtnForTaskList;
+
+    @FindBy(xpath = "//span[@class='added']")
+    public WebElement addedSign;
+
+    @FindBy(xpath = "(//a[@class='btn cancel'])[2]")
+    public WebElement closeBtn;
+
+    @FindBy(css = "a.close ")
+    public WebElement closeGridSetBtn;
+
+    @FindBy(xpath = "(//i[@title='Recent emails'])[1]")
+    public WebElement recentEmailWidget;
+
+    @FindBy(css = "div.sidebar-widget__icon")
+    public WebElement stickNotesWidget;
+
+    @FindBy(css = "div.sidebar-widget__icon")
+    public WebElement taskListWidget;
+
+    @FindBy(xpath = "//i[@class='fa-thumb-tack hide-text']")
+    public WebElement pinBtn;
+
+    @FindBy(xpath = "(//a[@title='Car - Entities - System - Car - Entities - System'])[1]")
+    public WebElement pinnedPage;
+
+    @FindBy(xpath = "//div//a[contains(text(), 'Learn how to use this space')]")
+    public WebElement warningText;
+
+    @FindBy(xpath = "//i[@class='fa-star hide-text']")
+    public WebElement favoriteSignBtn;
+
+    @FindBy(css = "i.fa-bars")
+    public WebElement dropdownMenu;
+
+    @FindBy(xpath = "//a[@href='#favorite-content']")
+    public WebElement Favorites;
+
+    @FindBy(xpath = "//button[@class='close']/following-sibling::a[1]")
+    public WebElement favoritePages;
+
+    // @FindBy (xpath = "//div[@class='dot-menu-empty-message']")
+    // public WebElement noItemsMessage;
+
+    /*-EC */
+    @FindBy(xpath = "//span[@class='close']")
+    public WebElement closeGridSetting;
+
+    @FindBy (xpath = "//div//a[@title='Reset']")
+    public WebElement resetButton2;
+
+    @FindBy (xpath = "//div[@class='column-manager-title']")
+    public WebElement gridSettingsButtonTitle;
+    /* EC-*/
 
 }
