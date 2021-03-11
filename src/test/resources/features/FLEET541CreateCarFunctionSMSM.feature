@@ -3,7 +3,7 @@ Feature: Storemanager/SalesManager create car function
 
   Background:
     Given the user is on the login page
-  @FLEET-393
+  @FLEET-393 @FLEET-647
   Scenario Outline:As a Storemanager/SalesManager I should be able to create car
     And the user logs in using "<username>" and "<password>"
     And the user goes to Vehicles page
