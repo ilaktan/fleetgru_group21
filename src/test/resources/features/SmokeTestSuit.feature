@@ -67,7 +67,7 @@ Feature: Smoke Suit
       | sales_manager_username | sales_manager_password | Dashboard |
       | store_manager_username | store_manager_password | Dashboard |
       | driver_username        | driver_password        | Dashboard |
-
+  @FLEET-664
   Scenario:Truck Driver Add Event Function
     Given the user is on the login page
     And the user logs in using "driver_username" and "driver_password"
@@ -75,7 +75,7 @@ Feature: Smoke Suit
     Then the user sees all informations about specific car
     And the user clicks any car in the list
     Then clicks the -Add Event- button
-
+  @FLEET-665
   Scenario Outline:SalesManager/StoreManager edit car "<username>"
     Given the user is on the login page
     And the user logs in using "<username>" and "<password>"
