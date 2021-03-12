@@ -42,8 +42,6 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
         Assert.assertEquals(createCarPage.row16.getText(),"122");
         Assert.assertEquals(createCarPage.row17.getText(),"2,000");
         Assert.assertEquals(createCarPage.row18.getText(),"2,000,000");
-
-
     }
 
     @Given("the user goes to Vehicles page")

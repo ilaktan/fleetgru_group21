@@ -8,6 +8,8 @@ import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SmokeTestSuitStepDef {
 
@@ -70,4 +72,14 @@ public class SmokeTestSuitStepDef {
         System.out.println("expectedTitle = " + expectedTitle);
         Assert.assertEquals("Dashboard", actualTitle);
     }
+    @Then("car edit page title should contain \\(Entities - System - Car - Entities - System)")
+    public void car_edit_page_title_should_contain_Entities_System_Car_Entities_System() {
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.titleContains("Entities - System - Car - Entities - System"));
+
+        Assert.assertTrue(Driver.get().getTitle().contains("Entities - System - Car - Entities - System"));
+    }
+
+
+
+
 }

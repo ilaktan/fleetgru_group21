@@ -48,7 +48,7 @@ Feature: Smoke Suit
 
 
   @FLEET-648 @FLEET-639
-  Scenario:As a Storemanager/SalesManager I should be able to create car
+  Scenario:Truck Driver can see all informations about specific car
     Given the user is on the login page
     And the user logs in using "driver_username" and "driver_password"
     And the user goes to Vehicles page
@@ -68,4 +68,22 @@ Feature: Smoke Suit
       | store_manager_username | store_manager_password | Dashboard |
       | driver_username        | driver_password        | Dashboard |
 
-
+  Scenario:Truck Driver Add Event Function
+    Given the user is on the login page
+    And the user logs in using "driver_username" and "driver_password"
+    And the user goes to Vehicles page
+    Then the user sees all informations about specific car
+    And the user clicks any car in the list
+    Then clicks the -Add Event- button
+  @w
+  Scenario Outline:SalesManager/StoreManager edit car
+    Given the user is on the login page
+    And the user logs in using "<username>" and "<password>"
+    And the user navigates to "Fleet" to "Vehicles"
+    When the user clicks any car in the list
+    Then the user clicks car edit button
+    And car edit page title should contain (Entities - System - Car - Entities - System)
+    Examples:
+      | username               | password               |
+      | sales_manager_username | sales_manager_password |
+      | store_manager_username | store_manager_password |
