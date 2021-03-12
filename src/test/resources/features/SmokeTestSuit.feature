@@ -56,17 +56,16 @@ Feature: Smoke Suit
 
 
   @FLEET-659 @FLEET-639
-  Scenario: Login as a driver
+  Scenario Outline: Login and Logout as a Truck Driver/Store Manager/Sales Manager
     Given the user is on the login page
-    When the user enters the driver information
-    Then the user should be able to login
-  Scenario:  Login as a sales manager
-    Given the user is on the login page
-    When the user enters the sales manager information
-    Then the user should be able to login
-  Scenario: Login as a store manager
-    Given the user is on the login page
-    When the user enters the store manager information
-    Then the user should be able to login
+    And the user logs in using "<username>" and "<password>"
+    Then the title should be "<title>"
+    When the user can logout with logout button
+    Then the user should succesfully logout
+    Examples:
+      | username               | password               | title     |
+      | sales_manager_username | sales_manager_password | Dashboard |
+      | store_manager_username | store_manager_password | Dashboard |
+      | driver_username        | driver_password        | Dashboard |
 
 
