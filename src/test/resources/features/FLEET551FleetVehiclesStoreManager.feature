@@ -1,4 +1,4 @@
-@wip
+#@wip
 Feature: StoreManager edit specific car
 
 	Background:

@@ -1,4 +1,4 @@
-@wip
+#@wip
 Feature: Storemanager/SalesManager create car function
 
   Background:
