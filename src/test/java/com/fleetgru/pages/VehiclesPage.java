@@ -369,4 +369,43 @@ public WebElement plusSign;
     public WebElement gridSettingsButtonTitle;
     /* EC-*/
 
+    /* AZ-*/
+
+    @FindBy(css = ".fa-chevron-right")
+    public WebElement pageForwardButton;
+
+    @FindBy(css=".input-widget")
+    public WebElement inputBox;
+
+    @FindBy(css="div.page-size .caret")
+    public WebElement viewPerPageBox;
+
+    @FindBy(xpath="//a[contains(.,'50')]")
+    public WebElement viewPerPageBox50;
+
+    @FindBy(xpath="//a[contains(.,'Export Grid')]")
+    public WebElement exportGrid;
+
+    @FindBy(xpath ="//a[contains(.,'CSV')]")
+    public WebElement sendingEmail;
+
+    @FindBy(xpath="//div[@class='flash-messages-holder']")
+    public WebElement greenBox;
+
+    @FindBy(xpath ="//tr[5]//input[1]")
+    public WebElement selectCheckBox;
+
+    @FindBy(xpath ="//thead[@class='grid-header']//i[@class='fa-ellipsis-h']")
+    public WebElement massActions;
+
+    @FindBy(css="ul.detach .action")
+    public WebElement deleteButton;
+
+    @FindBy(css =".ok")
+    public WebElement confirmationYesDelete;
+
+    @FindBy(css =".alert")
+    public WebElement deleteGreen;
+    /* AZ-*/
+
 }
