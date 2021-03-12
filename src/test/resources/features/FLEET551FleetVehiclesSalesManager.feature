@@ -1,4 +1,4 @@
-@wip
+#@wip
 Feature: SalesManager edit specific car
 
 	Background:
