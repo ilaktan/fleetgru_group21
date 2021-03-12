@@ -2,10 +2,18 @@
 Feature: Smoke Suit
 
   @FLEET-642 @FLEET-639
-  Scenario: Getting Vehicle Information as a Truck Driver
-    Given the user logged in successfully as a "truck driver"
+  Scenario Outline: Getting Vehicle Information as a Truck Driver/Sales Manager/Store Manager
+    Given the user is on the login page
+    And the user logs in using "<username>" and "<password>"
     When the user navigates to "Fleet" "Vehicles"
-    Then the sub-title should be "Cars"
+    Then the sub-title should be "<sub-title>"
+    Examples:
+      | username               | password               | sub-title |
+      | sales_manager_username | sales_manager_password | All Cars  |
+      | store_manager_username | store_manager_password | All Cars  |
+      | driver_username        | driver_password        | Cars      |
+
+
 
   @FLEET-643 @FLEET-639
   Scenario Outline:Filter Function as a Truck Driver/Storemanager/SalesManager
@@ -47,9 +55,7 @@ Feature: Smoke Suit
     Then the user sees all informations about specific car
 
 
-
-
-  @FLEET-659
+  @FLEET-659 @FLEET-639
   Scenario: Login as a driver
     Given the user is on the login page
     When the user enters the driver information
