@@ -222,12 +222,18 @@ public WebElement car1;
 
     //-------------------ME
     public void clickACarInTheTable() {
-        BrowserUtils.waitFor(3);
+        //BrowserUtils.waitFor(3);
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", oneCarData);
-        new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
+        int click_count=0;
+        while (click_count<11) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", oneCarData);
+            new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
+            System.out.println("clicked a Car");
+            click_count++;
+            BrowserUtils.waitFor(1);
+            if(editCar.isDisplayed()) break;
+        }
 
     }
 

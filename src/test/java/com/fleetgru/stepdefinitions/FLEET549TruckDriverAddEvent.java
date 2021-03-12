@@ -43,6 +43,8 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
             ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", new VehiclesPage().addEvent);
             BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
         }
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("span[id*='ui-id']")));
+        Assert.assertEquals(new AddEventPage().titleOfAddEvent.get(0).getText(),"Add Event");
     }
 
     @Then("the user should edit the required fields")
@@ -58,17 +60,17 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         addEventPage.enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
         JavascriptExecutor j=(JavascriptExecutor) Driver.get();
         j.executeScript("arguments[0].click();", addEventPage.allDayEvent);
-        //addEvent.allDayEvent.click();
-        //j.executeScript("arguments[0].click();",addEvent.repeat);
+        //
+        //
         j.executeScript("arguments[0].click();", addEventPage.repeat);
         Select select=new Select(addEventPage.repeatsDropdown);
         select.selectByVisibleText("Weekly");
         addEventPage.checkBoxMonday.click();
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", addEventPage.saveButton);
         new Actions(Driver.get()).moveToElement(addEventPage.saveButton).click().perform();
-        //addEventPage.saveButton.click();
-        //BrowserUtils.waitForPresenceOfElement(By.cssSelector("div[class='message-item message']>strong"),10 );
-        //BrowserUtils.waitForVisibility(addEvent.savedTitleOnGeneralInformationPage,5);
+        //
+        //
+        //
 
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message-item message']")));
         addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);

@@ -53,7 +53,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
             System.out.println("clicked editCar");
             click_count++;
             BrowserUtils.waitFor(1);
-            if(ec.saveAndClose.isEnabled()) break;
+            if(ec.saveAndClose.isDisplayed()) break;
         }
 
     }
