@@ -1,5 +1,6 @@
 package com.fleetgru.stepdefinitions;
 
+import com.fleetgru.pages.DashBoardPage;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.ConfigurationReader;
@@ -11,7 +12,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
-public class LoginStepDefs {
+public class FLEET543LoginFuncStepDefs {
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         String url = ConfigurationReader.get("url");
@@ -26,24 +27,24 @@ public class LoginStepDefs {
         String password = ConfigurationReader.get("driver_password");
 
         LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
+        loginPage.login(username, password);
     }
 
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
         BrowserUtils.waitFor(5);
         String actualTitle = Driver.get().getTitle();
-        Assert.assertEquals("Dashboard",actualTitle);
+        Assert.assertEquals("Dashboard", actualTitle);
 
     }
 
     @When("the user enters the sales manager information")
-    public void the_user_enters_the_sales_manager_information()  {
+    public void the_user_enters_the_sales_manager_information() {
         String username = ConfigurationReader.get("sales_manager_username");
         String password = ConfigurationReader.get("sales_manager_password");
 
         LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
+        loginPage.login(username, password);
 
     }
 
@@ -53,7 +54,7 @@ public class LoginStepDefs {
         String password = ConfigurationReader.get("store_manager_password");
 
         LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
+        loginPage.login(username, password);
     }
 
     @When("the user logs in using {string} and {string}")
@@ -62,22 +63,37 @@ public class LoginStepDefs {
         String username = ConfigurationReader.get(string);
         String password = ConfigurationReader.get(string2);
 
-        loginPage.login(username,password);
+        loginPage.login(username, password);
+        //new DashBoardPage().waitUntilLoaderScreenDisappear();
     }
 
     @Then("the title contains {string}")
     public void the_title_contains(String expectedTitle) {
         System.out.println("expectedTitle = " + expectedTitle);
         BrowserUtils.waitFor(2);
-        Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
+        try {
+            Assert.assertEquals(expectedTitle, new LoginPage().invalid.getText());
 
+
+        } catch (Exception e) {
+            String passwordMessage = new LoginPage().password.getAttribute("validationMessage");
+            String usernameMessage = new LoginPage().userName.getAttribute("validationMessage");
+
+            String usernameinput = new LoginPage().userName.getAttribute("value");
+            String passwordinput = new LoginPage().password.getAttribute("value");
+            System.out.println("usernameinput = " + usernameinput);
+            System.out.println("passwordinput = " + passwordinput);
+
+            if (usernameinput == null && passwordinput == null) {
+                Assert.assertEquals(expectedTitle, usernameMessage);
+            } else if (usernameinput == null && passwordinput != null) {
+                Assert.assertEquals(expectedTitle, usernameMessage);
+            } else if (usernameinput != null && passwordinput == null) {
+                Assert.assertEquals(expectedTitle, passwordMessage);
+
+            }
+
+
+        }
     }
-
-
-
-
-
-
-
-
 }

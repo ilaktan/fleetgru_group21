@@ -10,6 +10,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public abstract class  BasePage {
      */
     public void waitUntilLoaderScreenDisappear() {
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
+            WebDriverWait wait = new WebDriverWait(Driver.get(), 60);
             wait.until(ExpectedConditions.invisibilityOf(loaderMask));
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,6 +107,7 @@ public abstract class  BasePage {
             new Actions(Driver.get()).moveToElement(tabElement).pause(200).doubleClick(tabElement).build().perform();
         } catch (Exception e) {
             BrowserUtils.clickWithWait(By.xpath(tabLocator), 5);
+
         }
         try {
             BrowserUtils.waitForPresenceOfElement(By.xpath(moduleLocator), 5);
@@ -128,5 +130,12 @@ public abstract class  BasePage {
             }catch (NoSuchElementException | InterruptedException el) { Driver.get().navigate().refresh();}
 
         }
+    }
+    /**
+     * Select dropdown method
+     *
+     * */
+    public Select selectDropdown(WebElement element){
+        return new Select(element);
     }
 }

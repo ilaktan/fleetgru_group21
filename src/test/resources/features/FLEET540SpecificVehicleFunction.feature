@@ -1,4 +1,4 @@
-@FLEET-540
+@FLEET-637
 Feature: Functionality types
 
   Background:
@@ -7,7 +7,7 @@ Feature: Functionality types
     Then the user should be able to login
     And the user navigates to "Fleet" to "Vehicles"
 
-
+  @FLEET-634
   Scenario Outline: User should see any car's general information
     Then the user gets any "<car>" information
     And  the hompage contains "<title>"
@@ -18,7 +18,7 @@ Feature: Functionality types
       | car19 | Fredrika |
 
 
-
+  @FLEET-635
   Scenario: Filtering functionality test
     When the user gets  car1 information
     And the user filters by using Activity Type

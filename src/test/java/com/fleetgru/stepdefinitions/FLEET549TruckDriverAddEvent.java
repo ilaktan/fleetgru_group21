@@ -24,8 +24,8 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
     public void the_user_navigates_to_to(String tab, String module) {
         DashBoardPage dashBoard = new DashBoardPage();
         dashBoard.navigateToModule(tab, module);
-        dashBoard.waitUntilLoaderScreenDisappear();
-        System.out.println("the user navigates to Fleet to Vehicles");
+        //dashBoard.waitUntilLoaderScreenDisappear();
+        //System.out.println("the user navigates to Fleet to Vehicles");
     }
 
     @When("the user clicks any car in the list")
@@ -35,11 +35,12 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
 
     @When("clicks the -Add Event- button")
     public void clicks_the_Add_Event_button() {
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("h1.oro-subtitle")));
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//h1[text()='Cars']")));
+        //new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("h1.oro-subtitle")));
+        //new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//h1[text()='Cars']")));
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='container-fluid']//a)[1]")));
         BrowserUtils.waitFor(5);
         while(new AddEventPage().titleOfAddEvent.size()<1) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", new VehiclesPage().addEvent);
             BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
         }
     }
@@ -63,9 +64,12 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         Select select=new Select(addEventPage.repeatsDropdown);
         select.selectByVisibleText("Weekly");
         addEventPage.checkBoxMonday.click();
-        addEventPage.saveButton.click();
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", addEventPage.saveButton);
+        new Actions(Driver.get()).moveToElement(addEventPage.saveButton).click().perform();
+        //addEventPage.saveButton.click();
         //BrowserUtils.waitForPresenceOfElement(By.cssSelector("div[class='message-item message']>strong"),10 );
         //BrowserUtils.waitForVisibility(addEvent.savedTitleOnGeneralInformationPage,5);
+
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message-item message']")));
         addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);
         Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", addEventPage.savedTitleOnGeneralInformationPage.getText());
@@ -77,7 +81,9 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         AddEventPage v=new AddEventPage();
         v.waitUntilLoaderScreenDisappear();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
-        new Actions(Driver.get()).moveToElement(v.lastExpandButtonsCollapsed.get(0)).click().perform();
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", v.lastExpandButtonCollapsed);
+        new Actions(Driver.get()).moveToElement(v.lastExpandButtonCollapsed).click().perform();
+
             //locator belongs
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
             List<String> listEventSubEntries=BrowserUtils.getElementsText(v.eventSubEntries);
@@ -88,6 +94,4 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
                 System.out.println((i + 1) + "th element fits");
             }
         }
-
-
 }

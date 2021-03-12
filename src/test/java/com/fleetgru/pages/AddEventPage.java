@@ -1,12 +1,21 @@
 package com.fleetgru.pages;
 
 
+import com.fleetgru.utilities.BrowserUtils;
+import com.fleetgru.utilities.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public class AddEventPage extends BasePage{
+    @FindBy(xpath = "//div[@class='controls']/input[@type='text']")
+    public List<WebElement> severalInputBoxes;
+
     @FindBy(xpath="//input[@name='custom_entity_type[LicensePlate]']")
     public WebElement licensePlate;
 
@@ -88,7 +97,7 @@ public class AddEventPage extends BasePage{
     public List<WebElement> eventList;
 
     @FindBy(xpath = "(//a[contains(@href,'#accordion-item')][ @class='accordion-icon accordion-toggle collapsed'])[1]") //css = "a[data-toggle='collapse']"
-    public List<WebElement> lastExpandButtonsCollapsed;
+    public WebElement lastExpandButtonCollapsed;
     //public List<WebElement> expandButtons;
 
     //seen after event items expanded
@@ -138,5 +147,62 @@ public class AddEventPage extends BasePage{
     @FindBy(css = "button[title='close']")
     public WebElement closeButton;
 
+   // Joseph Locators
+
+    @FindBy(xpath = "(//select)[1]")
+    public WebElement transmission;
+
+    @FindBy(xpath = "(//select)[2]")
+    public WebElement fuelType;
+
+    @FindBy(xpath = "//div/button[@type='submit']")
+    public WebElement saveAndClose;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    public List<WebElement> checkBoxes;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[1]")
+    public WebElement firstCheckBox;
+
+    @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Driver')]")
+    public WebElement driverName;
+
+    @FindBy(xpath = "//input[contains(@id,'date_selector_custom_entity_type_ImmatriculationDate')]")
+    public WebElement immatriculationDate;
+
+    @FindBy(xpath = "(//div[@class='control-label'])[8]")
+    public WebElement immatriculationDateOutput;
+
+    @FindBy(xpath = "//input[contains(@id,'custom_entity_type_LicensePlate')]")
+    public WebElement licencePlateEntry;
+
+    public void clickCheckBoxesAndSave(List<WebElement> checkBoxes){
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(firstCheckBox));
+        int count=0;
+        outer: for (WebElement checkBox : checkBoxes) {
+            if(!checkBox.isSelected()) {
+                checkBox.click();
+                System.out.println("checkBox clicked");
+                count++;
+            }
+            if(checkBox.isSelected()) {
+                count++;
+            }
+            if(count==7) break outer;
+        }
+        new AddEventPage().saveandClose();
+    }
+
+    public void saveandClose(){
+        AddEventPage ec=new AddEventPage();
+        VehiclesPage v=new VehiclesPage();
+        int click_count=0;
+        while (ec.saveAndClose.isDisplayed()&&click_count<11) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.saveAndClose);
+            System.out.println("Clicked");
+            click_count++;
+            if(v.editCar.isDisplayed()) break;
+        }
+    }
 
 }
