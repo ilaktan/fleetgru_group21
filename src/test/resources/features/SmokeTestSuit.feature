@@ -75,8 +75,8 @@ Feature: Smoke Suit
     Then the user sees all informations about specific car
     And the user clicks any car in the list
     Then clicks the -Add Event- button
-  @w
-  Scenario Outline:SalesManager/StoreManager edit car
+
+  Scenario Outline:SalesManager/StoreManager edit car "<username>"
     Given the user is on the login page
     And the user logs in using "<username>" and "<password>"
     And the user navigates to "Fleet" to "Vehicles"
