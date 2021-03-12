@@ -2,6 +2,7 @@ package com.fleetgru.stepdefinitions;
 
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.pages.VehiclesPage;
+import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.ConfigurationReader;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -60,5 +61,13 @@ public class SmokeTestSuitStepDef {
 
         Assert.assertEquals("Verify manage filter button", expected, actual);
 
+    }
+    @Then("the title should be {string}")
+    public void the_title_contains(String expectedTitle) {
+        BrowserUtils.waitFor(5);
+        String actualTitle = Driver.get().getTitle();
+        System.out.println("actualTitle = " + actualTitle);
+        System.out.println("expectedTitle = " + expectedTitle);
+        Assert.assertEquals("Dashboard", actualTitle);
     }
 }
