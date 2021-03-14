@@ -6,10 +6,7 @@ import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -30,21 +27,26 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
 
     @When("the user clicks any car in the list")
     public void the_user_clicks_any_car_in_the_list() {
+        try {
+            if (new AddEventPage().titleOfAddEvent.isDisplayed()) {
+                new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("button[type='reset']"))).click().perform();
+            }
+        } catch (NoSuchElementException e) {
+        }
         new VehiclesPage().clickACarInTheTable();
     }
 
     @When("clicks the -Add Event- button")
     public void clicks_the_Add_Event_button() {
-        //new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("h1.oro-subtitle")));
-        //new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//h1[text()='Cars']")));
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='container-fluid']//a)[1]")));
-        BrowserUtils.waitFor(5);
-        while(new AddEventPage().titleOfAddEvent.size()<1) {
+        while(new AddEventPage().titleOfAddEvents.size()<1) {
             ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", new VehiclesPage().addEvent);
             BrowserUtils.clickWithJS(new VehiclesPage().addEvent);
         }
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("span[id*='ui-id']")));
-        Assert.assertEquals(new AddEventPage().titleOfAddEvent.get(0).getText(),"Add Event");
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.textToBePresentInElement(new AddEventPage().titleOfAddEvent,"A"));
+        Assert.assertEquals(new AddEventPage().titleOfAddEvent.getText(),"Add Event");
+        new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("button[type='reset']"))).click().perform();
     }
 
     @Then("the user should edit the required fields")
@@ -60,18 +62,12 @@ public class FLEET549TruckDriverAddEvent extends BasePage {
         addEventPage.enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
         JavascriptExecutor j=(JavascriptExecutor) Driver.get();
         j.executeScript("arguments[0].click();", addEventPage.allDayEvent);
-        //
-        //
         j.executeScript("arguments[0].click();", addEventPage.repeat);
         Select select=new Select(addEventPage.repeatsDropdown);
         select.selectByVisibleText("Weekly");
         addEventPage.checkBoxMonday.click();
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", addEventPage.saveButton);
         new Actions(Driver.get()).moveToElement(addEventPage.saveButton).click().perform();
-        //
-        //
-        //
-
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message-item message']")));
         addEventPage.waitUntilWebElementVisible(addEventPage.savedTitleOnGeneralInformationPage,1000);
         Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", addEventPage.savedTitleOnGeneralInformationPage.getText());

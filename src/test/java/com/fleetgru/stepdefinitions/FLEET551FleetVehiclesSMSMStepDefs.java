@@ -6,7 +6,7 @@ import com.fleetgru.pages.DashBoardPage;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.pages.VehiclesPage;
 import com.fleetgru.utilities.BrowserUtils;
-import com.fleetgru.utilities.ConfigurationReader;
+import com.fleetgru.utilities.ConfigurationRW;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,7 +14,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,17 +25,17 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
             case "Truck Driver":
             case "truck driver":
             case "driver":
-                loginPage.login(ConfigurationReader.get("driver_username"), ConfigurationReader.get("driver_password"));
+                loginPage.login(ConfigurationRW.get("driver_username"), ConfigurationRW.get("driver_password"));
                 break;
             case "Sales Manager":
             case "sales manager":
             case "salesmanager":
-                loginPage.login(ConfigurationReader.get("sales_manager_username"), ConfigurationReader.get("sales_manager_password"));
+                loginPage.login(ConfigurationRW.get("sales_manager_username"), ConfigurationRW.get("sales_manager_password"));
                 break;
             case "Store Manager":
             case "store manager":
             case "storemanager":
-                loginPage.login(ConfigurationReader.get("store_manager_username"), ConfigurationReader.get("store_manager_password"));
+                loginPage.login(ConfigurationRW.get("store_manager_username"), ConfigurationRW.get("store_manager_password"));
                 break;
         }
     }

@@ -3,7 +3,7 @@ package com.fleetgru.stepdefinitions;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.pages.VehiclesPage;
 import com.fleetgru.utilities.BrowserUtils;
-import com.fleetgru.utilities.ConfigurationReader;
+import com.fleetgru.utilities.ConfigurationRW;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,7 +20,7 @@ public class SmokeTestSuitStepDef {
     @Given("the user logged in successfully as a {string}")
     public void the_user_logged_in_successfully_as_a(String userType) {
 
-        String url= ConfigurationReader.get("url");
+        String url= ConfigurationRW.get("url");
         Driver.get().get(url);
 
         String username = null;
@@ -28,18 +28,18 @@ public class SmokeTestSuitStepDef {
 
         if(userType.equals("truck driver")){
 
-            username = ConfigurationReader.get("driver_username");
-            password = ConfigurationReader.get("driver_password");
+            username = ConfigurationRW.get("driver_username");
+            password = ConfigurationRW.get("driver_password");
 
         }else if(userType.equals("sales manager")){
 
-            username = ConfigurationReader.get("sales_manager_username");
-            password = ConfigurationReader.get("sales_manager_password");
+            username = ConfigurationRW.get("sales_manager_username");
+            password = ConfigurationRW.get("sales_manager_password");
 
         }else if(userType.equals("store manager")){
 
-            username = ConfigurationReader.get("store_manager_username");
-            password = ConfigurationReader.get("store_manager_password");
+            username = ConfigurationRW.get("store_manager_username");
+            password = ConfigurationRW.get("store_manager_password");
         }
 
         loginPage.login(username, password);

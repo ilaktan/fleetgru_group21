@@ -142,7 +142,10 @@ public class AddEventPage extends BasePage{
     public WebElement savedTitleOnGeneralInformationPage;
 
     @FindBy(css = "span[id*='ui-id']")
-    public List<WebElement> titleOfAddEvent;
+    public List<WebElement> titleOfAddEvents;
+
+    @FindBy(css = "span[id*='ui-id']")
+    public WebElement titleOfAddEvent;
 
     @FindBy(css = "button[title='close']")
     public WebElement closeButton;
