@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/fleetgru/stepdefinitions",
         dryRun = false,
-        tags = "@FLEET-664"//"@SmokeSuit"
+        tags = "@SmokeSuit"
 )
 public class CukesRunner {
 }
