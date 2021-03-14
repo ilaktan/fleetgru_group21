@@ -53,7 +53,12 @@ public class VehiclesPage extends BasePage{
     public WebElement row13;
     @FindBy(xpath="//td[@data-column-label=\"Fuel Type\"]")
     public WebElement row14;
-    @FindBy(xpath="//td[@data-column-label=\"CO2 Emissions\"]")
+    @FindAll({
+            @FindBy(xpath="(//td[@data-column-label=\"CO2 Emissions\"])[1]"),
+            @FindBy(xpath = "(//td[16])[1]"),
+            @FindBy(xpath = "(//tbody/tr/td[16])[1]"),
+            @FindBy(linkText = "22")
+    })
     public WebElement row15;
     @FindBy(xpath="//td[@data-column-label=\"Horsepower\"]")
     public WebElement row16;
@@ -231,8 +236,7 @@ public WebElement car1;
             new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
             System.out.println("clicked a Car");
             click_count++;
-            BrowserUtils.waitFor(1);
-            if(editCar.isDisplayed()) break;
+            if(Driver.get().getTitle().contains("Entities - System - Car - Entities - System")) break;
         }
 
     }

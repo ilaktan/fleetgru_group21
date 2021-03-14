@@ -12,6 +12,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class FLEET548TruckDriverSpecificVehicleStepDef {
@@ -23,7 +24,7 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
 
     @Then("the user sees all informations about specific car")
     public void the_user_sees_all_informations_about_specific_car() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         Assert.assertEquals(createCarPage.row1.getText(),"55-55");
         Assert.assertEquals(createCarPage.row2.getText(),"Michael Johnson");
         Assert.assertEquals(createCarPage.row3.getText(),"Denver");
@@ -38,7 +39,7 @@ public class FLEET548TruckDriverSpecificVehicleStepDef {
         Assert.assertEquals(createCarPage.row12.getText(),"Blue");
         Assert.assertEquals(createCarPage.row13.getText(),"Automatic");
         Assert.assertEquals(createCarPage.row14.getText(),"Diesel");
-        Assert.assertEquals(createCarPage.row15.getText(),"22");
+        Assert.assertEquals(createCarPage.row15.getAttribute("innerText"),"22");
         Assert.assertEquals(createCarPage.row16.getText(),"122");
         Assert.assertEquals(createCarPage.row17.getText(),"2,000");
         Assert.assertEquals(createCarPage.row18.getText(),"2,000,000");

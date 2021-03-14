@@ -1,8 +1,7 @@
 package com.fleetgru.stepdefinitions;
 
 
-import com.fleetgru.utilities.BrowserUtils;
-import com.fleetgru.utilities.ConfigurationReader;
+import com.fleetgru.utilities.ConfigurationRW;
 import com.fleetgru.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,7 +19,7 @@ public class Hooks {
     public void setUp(){
         System.out.println("\tthis is coming from BEFORE");
         Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        Driver.get().get(ConfigurationReader.get("url"));
+        Driver.get().get(ConfigurationRW.get("url"));
         Driver.get().manage().window().maximize();
     }
 
