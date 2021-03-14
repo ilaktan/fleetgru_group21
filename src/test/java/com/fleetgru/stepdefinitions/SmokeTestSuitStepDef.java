@@ -66,7 +66,7 @@ public class SmokeTestSuitStepDef {
     }
     @Then("the title should be {string}")
     public void the_title_contains(String expectedTitle) {
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(7);
         String actualTitle = Driver.get().getTitle();
         System.out.println("actualTitle = " + actualTitle);
         System.out.println("expectedTitle = " + expectedTitle);
