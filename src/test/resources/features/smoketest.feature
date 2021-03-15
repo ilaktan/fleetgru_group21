@@ -1,5 +1,5 @@
 @FLEET-641
-Feature: SmokeTest
+Feature: smoke test
 
 	#{color:#403294}*USER STORY:*{color}
 	# *As a Truck Driver I should be able to get Vehicle informations*
@@ -136,9 +136,7 @@ Feature: SmokeTest
 	#
 	# 
 	@FLEET-647 @FLEET-639
-
-		Scenario Outline:As a Storemanager/SalesManager I should be able to create car
-		
+	Scenario Outline: SMOKE - As a Storemanager/SalesManager I should be able to create car
 		Given the user is on the login page
 		And the user logs in using "<username>" and "<password>"
 		And the user goes to Vehicles page
@@ -167,7 +165,6 @@ Feature: SmokeTest
 	# 4-Truck Driver can reach the all activities by using Newer and Older buttons
 	@FLEET-648 @FLEET-639 @FLEET-396
 	Scenario: SMOKE - Truck Driver can see all informations about specific car
-		Scenario:As a Storemanager/SalesManager I should be able to create car
 		Given the user is on the login page
 		And the user logs in using "driver_username" and "driver_password"
 		And the user goes to Vehicles page
@@ -183,8 +180,7 @@ Feature: SmokeTest
 	#
 	#_1-User can login with valid credentials (We have 3 types user such as sales manager, store manager, truck driver)._
 	@FLEET-659 @FLEET-639
-	Scenario: Smoke Test Suit  Log Out Function With 3 Different User
-		Scenario Outline: Login and Logout as a Truck Driver/Store Manager/Sales Manager
+	Scenario Outline: Smoke Test Suit  Log Out Function With 3 Different User
 		Given the user is on the login page
 		And the user logs in using "<username>" and "<password>"
 		Then the title should be "<title>"
