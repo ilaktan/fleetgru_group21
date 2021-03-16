@@ -1,6 +1,6 @@
 package com.fleetgru.stepdefinitions;
 
-import com.fleetgru.pages.AddEventPage;
+import com.fleetgru.pages.*;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.ConfigurationRW;
