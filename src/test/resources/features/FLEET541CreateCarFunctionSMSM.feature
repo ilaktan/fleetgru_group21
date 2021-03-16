@@ -1,10 +1,9 @@
-#@wip
+@US-541
 Feature: Storemanager/SalesManager create car function
 
-  Background:
-    Given the user is on the login page
-  @FLEET-393 @FLEET-647
+  @FLEET-393
   Scenario Outline:As a Storemanager/SalesManager I should be able to create car
+    Given the user is on the login page
     And the user logs in using "<username>" and "<password>"
     And the user goes to Vehicles page
     When the user click on Create Car button
@@ -16,9 +15,9 @@ Feature: Storemanager/SalesManager create car function
       |sales_manager_username|sales_manager_password|
       |store_manager_username|store_manager_password|
 
-
   @FLEET-394
   Scenario Outline: Storemanager/SalesManager can also add xVehicle Model Vehicle Make informations by using +Add button when creating car
+    Given the user is on the login page
     And the user logs in using "<username>" and "<password>"
     And the user goes to Vehicles page
     When the user click on Create Car button

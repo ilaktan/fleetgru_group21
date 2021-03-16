@@ -1,6 +1,5 @@
 package com.fleetgru.stepdefinitions;
 
-import com.fleetgru.pages.AddEventPage;
 import com.fleetgru.pages.DashBoardPage;
 import com.fleetgru.pages.VehiclesPage;
 import com.fleetgru.utilities.BrowserUtils;

@@ -4,12 +4,11 @@ import com.fleetgru.pages.AddEventPage;
 import com.fleetgru.pages.LoginPage;
 import com.fleetgru.pages.VehiclesPage;
 import com.fleetgru.utilities.BrowserUtils;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class FLEET541CreateCarFunctionStepDef {
+public class FLEET541CreateCarFunctionStepDef{
 
         VehiclesPage createCar=new VehiclesPage();
         AddEventPage createCar2=new AddEventPage();
