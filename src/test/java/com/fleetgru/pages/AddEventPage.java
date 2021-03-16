@@ -138,7 +138,10 @@ public class AddEventPage extends BasePage{
     @FindBy(css = "button.btn.btn-primary")
     public WebElement saveButton;
 
-    @FindBy(css = "div[class='message-item message']")
+    @FindAll({
+            @FindBy(css = "div[class='message-item message']"),
+            @FindBy(xpath = "//strong")
+    })
     public WebElement savedTitleOnGeneralInformationPage;
 
     @FindBy(css = "span[id*='ui-id']")
@@ -240,10 +243,8 @@ public class AddEventPage extends BasePage{
         Select select=new Select(repeatsDropdown);
         select.selectByVisibleText("Weekly");
         checkBoxMonday.click();
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", saveButton);
-        new Actions(Driver.get()).moveToElement(saveButton).click().perform();
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message-item message']")));
-        waitUntilWebElementVisible(savedTitleOnGeneralInformationPage,1000);
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", saveButton);
+        waitUntilWebElementVisible(savedTitleOnGeneralInformationPage,500);
         Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", savedTitleOnGeneralInformationPage.getText());
         System.out.println("end of the user should edit the required fields step");
     }

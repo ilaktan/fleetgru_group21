@@ -10,6 +10,7 @@ Feature: Truck Driver can edit car
     And the user clicks any car in the list
     And clicks the -Add Event- button
     Then the user should edit the required fields
+    And clicks cancel button
 
   @FLEET-555 @FLEET-558 #@1
   Scenario: Truck Driver able to see update in both general info and Activity tab FLEET-549

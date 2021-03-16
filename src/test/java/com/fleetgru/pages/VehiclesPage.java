@@ -237,8 +237,7 @@ public WebElement car1;
             if (new AddEventPage().titleOfAddEvent.isDisplayed()) {
                 new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("button[type='reset']"))).click().perform();
             }
-        } catch (NoSuchElementException e) {
-        }
+        } catch (NoSuchElementException e) { }
         //BrowserUtils.waitFor(3);
         try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
