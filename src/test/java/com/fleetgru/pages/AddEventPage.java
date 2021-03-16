@@ -1,13 +1,9 @@
 package com.fleetgru.pages;
 
-
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -112,8 +108,6 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath = "//div[@class='responsive-block']//div[@class='control-label']")})
     public List<WebElement> eventSubEntries;
 
-
-
     //Title
     @FindBy(xpath = "//input[@data-name='field__title']")
     public WebElement eventTitle;
@@ -205,9 +199,7 @@ public class AddEventPage extends BasePage{
         }
         new AddEventPage().saveandClose();
     }
-
     public void saveandClose(){
-
         VehiclesPage v=new VehiclesPage();
         int click_count=0;
         while (saveAndClose.isDisplayed()&&click_count<11) {
@@ -217,7 +209,6 @@ public class AddEventPage extends BasePage{
             if(v.editCar.isDisplayed()) break;
         }
     }
-
     public void clickAddEventButton(){
         By addevent=By.xpath("//div[@class=\"pull-right\"]/div/div/a");
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(addevent));
@@ -235,7 +226,7 @@ public class AddEventPage extends BasePage{
     }
 
     public void editAddEvent(){
-        waitUntilLoaderScreenDisappear();
+        try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
         eventTitle.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         organizerName.sendKeys("Michael Knight");
         organizeremail.sendKeys("m.knight@organizer.com");
@@ -258,7 +249,7 @@ public class AddEventPage extends BasePage{
     }
 
     public void verifyGeneralInfoWithActivityTab(){
-        waitUntilLoaderScreenDisappear();
+        try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", lastExpandButtonCollapsed);
         new Actions(Driver.get()).moveToElement(lastExpandButtonCollapsed).click().perform();

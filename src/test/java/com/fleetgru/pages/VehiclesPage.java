@@ -248,7 +248,10 @@ public WebElement car1;
             new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
             System.out.println("clicked a Car");
             click_count++;
-            if(Driver.get().getTitle().contains("Entities - System - Car - Entities - System")) break;
+            boolean a=Driver.get().getTitle().contains("Entities - System - Car - Entities - System");
+            if(a) {
+                break;
+            }
         }
 
     }
