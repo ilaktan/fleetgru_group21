@@ -10,11 +10,11 @@ Feature: Truck Driver can edit car
     And clicks the -Add Event- button
     
 
-  @FLEET-556 @FLEET-558
+  @FLEET-556 @FLEET-558  @1
   Scenario: TruckDriver add event by Add Event button FLEET-549
     Then the user should edit the required fields
 
-  @FLEET-555 @FLEET-558 @wip
+  @FLEET-555 @FLEET-558 #@1
   Scenario: Truck Driver able to see update in both general info and Activity tab FLEET-549
     Then the user should edit the required fields
     And the user should verify the info at General Information page with Activity tab.
