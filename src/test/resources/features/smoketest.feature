@@ -202,7 +202,8 @@ Feature: smoke test
 		 And the user goes to Vehicles page
 		 Then the user sees all informations about specific car
 		 And the user clicks any car in the list
-		 Then clicks the -Add Event- button	
+		 Then clicks the -Add Event- button
+		 And clicks cancel button
 
 	
 	@FLEET-665 @FLEET-639

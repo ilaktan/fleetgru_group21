@@ -1,15 +1,17 @@
 package com.fleetgru.pages;
 
-
 import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AddEventPage extends BasePage{
@@ -106,8 +108,6 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath = "//div[@class='responsive-block']//div[@class='control-label']")})
     public List<WebElement> eventSubEntries;
 
-
-
     //Title
     @FindBy(xpath = "//input[@data-name='field__title']")
     public WebElement eventTitle;
@@ -138,7 +138,10 @@ public class AddEventPage extends BasePage{
     @FindBy(css = "button.btn.btn-primary")
     public WebElement saveButton;
 
-    @FindBy(css = "div[class='message-item message']")
+    @FindAll({
+            @FindBy(css = "div[class='message-item message']"),
+            @FindBy(xpath = "//strong")
+    })
     public WebElement savedTitleOnGeneralInformationPage;
 
     @FindBy(css = "span[id*='ui-id']")
@@ -179,6 +182,10 @@ public class AddEventPage extends BasePage{
     @FindBy(xpath = "//input[contains(@id,'custom_entity_type_LicensePlate')]")
     public WebElement licencePlateEntry;
 
+    @FindAll({@FindBy(xpath = "(//div[@class='pull-right']//a)[1]"),
+            @FindBy(css = "a.btn.icons-holder-text.no-hash")})//
+    public WebElement addEvent;
+
     public void clickCheckBoxesAndSave(List<WebElement> checkBoxes){
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(firstCheckBox));
         int count=0;
@@ -195,17 +202,67 @@ public class AddEventPage extends BasePage{
         }
         new AddEventPage().saveandClose();
     }
-
     public void saveandClose(){
-        AddEventPage ec=new AddEventPage();
         VehiclesPage v=new VehiclesPage();
         int click_count=0;
-        while (ec.saveAndClose.isDisplayed()&&click_count<11) {
-            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", ec.saveAndClose);
+        while (saveAndClose.isDisplayed()&&click_count<11) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", saveAndClose);
             System.out.println("Clicked");
             click_count++;
             if(v.editCar.isDisplayed()) break;
         }
     }
+    public void clickAddEventButton(){
+        By addevent=By.xpath("//div[@class=\"pull-right\"]/div/div/a");
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(addevent));
+        while(titleOfAddEvents.size()<1) {
+            ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", addEvent);
+            BrowserUtils.clickWithJS(addEvent);
+        }
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("span[id*='ui-id']")));
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.textToBePresentInElement(titleOfAddEvent,"A"));
+        Assert.assertEquals(new AddEventPage().titleOfAddEvent.getText(),"Add Event");
 
+    }
+    public void clickCancelAddEventButton(){
+        new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("button[type='reset']"))).click().perform();
+    }
+
+    public void editAddEvent(){
+        try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
+        eventTitle.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        organizerName.sendKeys("Michael Knight");
+        organizeremail.sendKeys("m.knight@organizer.com");
+        startdate.clear();
+        startdate.sendKeys("Feb 25, 2021");
+        enddate.clear();
+        enddate.sendKeys("Feb 25, 2022"+ Keys.ESCAPE);
+        JavascriptExecutor j=(JavascriptExecutor) Driver.get();
+        j.executeScript("arguments[0].click();", allDayEvent);
+        j.executeScript("arguments[0].click();", repeat);
+        Select select=new Select(repeatsDropdown);
+        select.selectByVisibleText("Weekly");
+        checkBoxMonday.click();
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", saveButton);
+        waitUntilWebElementVisible(savedTitleOnGeneralInformationPage,500);
+        Assert.assertEquals("verified the title of the Event","ABCDEFGHIJKLMNOPQRSTUVWXYZ", savedTitleOnGeneralInformationPage.getText());
+        System.out.println("end of the user should edit the required fields step");
+    }
+
+    public void verifyGeneralInfoWithActivityTab(){
+        try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.accordion-heading.clearfix")));
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", lastExpandButtonCollapsed);
+        new Actions(Driver.get()).moveToElement(lastExpandButtonCollapsed).click().perform();
+
+        //locator belongs
+        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='items list-box list-shaped']//div[@data-layout='separate' and @class='list-item']//div[@class='controls']/div")));
+        List<String> listEventSubEntries=BrowserUtils.getElementsText(eventSubEntries);
+        List<String> expected= Arrays.asList("ABCDEFGHIJKLMNOPQRSTUVWXYZ","N/A","Feb 25, 2021, 12:00 AM","Feb 25, 2022, 12:00 AM","Yes","Weekly every 1 week on Monday");
+        System.out.println("List<String> expected= Arrays.asList(\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"N/A\",\"Feb 25, 2021, 12:00 AM\",\"Feb 25, 2022, 12:00 AM\",\"Yes\",\"Weekly every 1 week on Monday\");   CREATED");
+        for(int i=0;i<expected.size();i++){
+            Assert.assertEquals((i+1)+"th element fits",expected.get(i),listEventSubEntries.get(i));
+            System.out.println((i + 1) + "th element fits");
+        }
+    }
 }

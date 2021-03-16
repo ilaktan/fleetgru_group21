@@ -4,6 +4,7 @@ import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
@@ -86,9 +87,7 @@ public class VehiclesPage extends BasePage{
             @FindBy(xpath = "//div[@class='control-group attribute-row']//div[@class='control-label']")})
     public List<WebElement> carGeneralInformationValues;
 
-    @FindAll({@FindBy(xpath = "(//div[@class='pull-right']//a)[1]"),
-    @FindBy(css = "a.btn.icons-holder-text.no-hash")})//
-    public WebElement addEvent;
+
 
     @FindBy(css=".icons-holder-text")
     public WebElement addEvent2;
@@ -234,8 +233,13 @@ public WebElement car1;
 
     //-------------------ME
     public void clickACarInTheTable() {
+        try {
+            if (new AddEventPage().titleOfAddEvent.isDisplayed()) {
+                new Actions(Driver.get()).moveToElement(Driver.get().findElement(By.cssSelector("button[type='reset']"))).click().perform();
+            }
+        } catch (NoSuchElementException e) { }
         //BrowserUtils.waitFor(3);
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));
+        try{new WebDriverWait(Driver.get(),60).until(ExpectedConditions.invisibilityOf(Driver.get().findElement(By.xpath("//div[@class='loader-mask shown']"))));}catch(NoSuchElementException e){}
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody/tr[15]/td[4])[1]")));
         int click_count=0;
         while (click_count<11) {
@@ -243,7 +247,10 @@ public WebElement car1;
             new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
             System.out.println("clicked a Car");
             click_count++;
-            if(Driver.get().getTitle().contains("Entities - System - Car - Entities - System")) break;
+            boolean a=Driver.get().getTitle().contains("Entities - System - Car - Entities - System");
+            if(a) {
+                break;
+            }
         }
 
     }
