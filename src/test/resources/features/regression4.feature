@@ -224,18 +224,14 @@ Feature:
 	#_1-User can login with valid credentials (We have 3 types user such as sales manager, store manager, truck driver)._
 	#_2-User can not login with invalid credentials._
 	@FLEET-598 @FLEET-667
-	Scenario: Login functionality for 3 different users(sales manager, store manager, truck driver)
-		Background:
+	Scenario Outline: Login functionality for 3 different users(sales manager, store manager, truck driver)
 		Given the user is on the login page
-		Scenario: Login as a driver
-		When the user enters the driver information
-		Then the user should be able to login
-		Scenario:  Login as a sales manager
-		When the user enters the sales manager information
-		Then the user should be able to login
-		Scenario: Login as a store manager
-		When the user enters the store manager information
-		Then the user should be able to login	
+		And the user logs in using "<username>" and "<password>"
+		Examples:
+			|username              |password              |
+			|sales_manager_username|sales_manager_password|
+			|store_manager_username|store_manager_password|
+			|driver_username       |driver_password       |
 
 	#{color:#00875a}*User Story :* {color}
 	#
@@ -249,7 +245,6 @@ Feature:
 	#_2-User can not login with invalid credentials._
 	@FLEET-645 @FLEET-667
 	Scenario Outline: Login functions with invalid info for different users
-		Scenario Outline: login as a given user <username>
 		Given the user is on the login page
 		When the user logs in using following credentials "<username>" and "<password>"
 		Then the title contains "<text>"
@@ -294,7 +289,6 @@ Feature:
 	#1-User can log out by using log out button inside profile info
 	@FLEET-646 @FLEET-667
 	Scenario Outline: Logout Function for different users(Truck Driver-Sales and Store Manager)
-		Scenario Outline: logout as a given user <username>
 		Given the user logged in as "<username>"
 		When the user can logout with logout button
 		Then the user should succesfully logout
