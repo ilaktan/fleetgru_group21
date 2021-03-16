@@ -128,6 +128,10 @@ public class VehiclesPage extends BasePage{
     public WebElement selectAllButton;
 
     @FindBy (xpath = "//div//a[@title='Filters']")
+    public WebElement filtersButton2;
+
+    @FindAll({@FindBy(xpath = "//a[@title='Filters']"),
+            @FindBy(xpath = "//a[contains(@class,'action btn')]")})
     public WebElement filtersButton;
 
     @FindBy (xpath = "//a[@class='add-filter-button']")
@@ -277,13 +281,19 @@ public WebElement car1;
     @FindBy(xpath = "(//a[@href='#'])[22]")
     public WebElement backButton;
 
-    @FindBy (xpath = "//button[@data-toggle='dropdown']")
+//    @FindBy (xpath = "//button[@class='btn dropdown-toggle ']")
+//    public WebElement perPageButton2;
+
+    @FindAll({@FindBy(xpath = "//button[@data-toggle='dropdown']"),
+            @FindBy(css = "div.page-size .caret")})
     public WebElement perPageButton;
 
     @FindBy (xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr")
     public List<WebElement> tableRowSize;
 
-    @FindBy (xpath = "(//a[@data-toggle='dropdown'])[4]")
+
+    @FindAll({@FindBy(xpath = "(//a[@data-toggle='dropdown'])[4]"),
+            @FindBy(xpath = "//a[contains(.,'Export Grid')]")})
     public WebElement exportGridButton;
 
     @FindBy (xpath = "//div[@class='message']")

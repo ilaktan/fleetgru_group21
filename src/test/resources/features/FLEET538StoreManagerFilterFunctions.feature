@@ -8,30 +8,30 @@ Feature: Filter Functions as a store manager
     Then the user should be able to login
 
   @FLEET-611 @FLEET-632
-  Scenario: Use Grid Setting button as a Store Manager
+  Scenario: Use Grid Setting button as a store manager
     When the user navigates to "Fleet" to "Vehicles"
     When the user click the Grid Setting button
     Then following columns should be available under grid settings button
-      | Id                        |
-      | License Plate             |
-      | Tags                      |
-      | Driver                    |
-      | Location                  |
-      | Chassis Number            |
-      | Model Year                |
-      | Last Odometer             |
-      | Immatriculation Date      |
-      | First Contract Date       |
-      | Catalog Value (VAT Incl.) |
-      | Seats Number              |
-      | Doors Number              |
-      | Color                     |
-      | Transmission              |
-      | Fuel Type                 |
-      | CO2 Emissions             |
-      | Horsepower                |
-      | Horsepower Taxation       |
-      | Power (KW)                |
+      |Id                        |
+      |License Plate             |
+      |Tags                      |
+      |Driver                    |
+      |Location                  |
+      |Chassis Number            |
+      |Model Year                |
+      |Last Odometer             |
+      |Immatriculation Date      |
+      |First Contract Date       |
+      |Catalog Value (VAT Incl.) |
+      |Seats Number              |
+      |Doors Number              |
+      |Color                     |
+      |Transmission              |
+      |Fuel Type                 |
+      |CO2 Emissions             |
+      |Horsepower                |
+      |Horsepower Taxation       |
+      |Power (KW)                |
 
   @FLEET-613 @FLEET-632
   Scenario: Use Grid Setting Button as a store manager -Search Valid item
@@ -64,25 +64,25 @@ Feature: Filter Functions as a store manager
     When the user click the filter button
     And the user click the manage filter button
     Then following columns should be available under manage filter button
-      | License Plate             |
-      | Tags                      |
-      | Driver                    |
-      | Location                  |
-      | Chassis Number            |
-      | Model Year                |
-      | Last Odometer             |
-      | Immatriculation Date      |
-      | First Contract Date       |
-      | Catalog Value (VAT Incl.) |
-      | Seats Number              |
-      | Doors Number              |
-      | Color                     |
-      | Transmission              |
-      | Fuel Type                 |
-      | CO2 Emissions             |
-      | Horsepower                |
-      | Horsepower Taxation       |
-      | Power (KW)                |
+      |License Plate             |
+      |Tags                      |
+      |Driver                    |
+      |Location                  |
+      |Chassis Number            |
+      |Model Year                |
+      |Last Odometer             |
+      |Immatriculation Date      |
+      |First Contract Date       |
+      |Catalog Value (VAT Incl.) |
+      |Seats Number              |
+      |Doors Number              |
+      |Color                     |
+      |Transmission              |
+      |Fuel Type                 |
+      |CO2 Emissions             |
+      |Horsepower                |
+      |Horsepower Taxation       |
+      |Power (KW)                |
 
 
   @FLEET-621 @FLEET-632
@@ -112,15 +112,15 @@ Feature: Filter Functions as a store manager
     And user clicks on Contains button;
     Then verifies Contains dropdown menu displayed
     Then user should be able to see following dropdown menu options
-      |Contains|
-      |Does Not Contain|
-      |Is Equal To     |
-      |Starts With     |
-      |Ends With       |
-      |Is Any Of       |
-      |Is Not Any Of   |
-      |Is Empty        |
-      |Is Not Empty    |
+      |Contains         |
+      |Does Not Contain |
+      |Is Equal To      |
+      |Starts With      |
+      |Ends With        |
+      |Is Any Of        |
+      |Is Not Any Of    |
+      |Is Empty         |
+      |Is Not Empty     |
 
   @FLEET-627 @FLEET-632
   Scenario: Using the Manage Filter as a store manager -Contains button with valid item

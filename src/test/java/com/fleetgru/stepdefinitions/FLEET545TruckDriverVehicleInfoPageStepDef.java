@@ -7,7 +7,10 @@ import com.fleetgru.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
     @Then("the sub-title should be {string}")
     public void the_sub_title_should_be_(String expectedSubTitle) {
         //BrowserUtils.waitForVisibility(dashBoardPage.pageSubTitle, 5);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         Assert.assertEquals("verify page subtitle", expectedSubTitle, dashBoardPage.getPageSubTitle());
         System.out.println(dashBoardPage.getPageSubTitle());
         System.out.println(expectedSubTitle);
@@ -31,7 +34,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
     @Then("the page number should be {string}")
     public void the_page_number_should_be(String expected) {
 
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitForVisibility(vehiclesPage.pageInputBox, 5);
         String actual = vehiclesPage.pageInputBox.getAttribute("value");
         Assert.assertEquals("verify default page number", expected, actual);
         System.out.println(actual);
@@ -40,12 +43,12 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @When("the user should use the forward button")
     public void the_user_should_use_the_forward_button() {
-        BrowserUtils.waitFor(3);
 
         for (int i = 0; i < 5; i++) {
+            BrowserUtils.waitFor(5);
             actualPageInfo.add(vehiclesPage.pageInputBox.getAttribute("value"));
             vehiclesPage.forwardButton.click();
-            BrowserUtils.waitFor(1);
+            BrowserUtils.waitForPageToLoad(5);
         }
     }
 
@@ -56,7 +59,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
         for (int i = 0; i < 6; i++) {
             actualPageInfo.add(vehiclesPage.pageInputBox.getAttribute("value"));
             vehiclesPage.backButton.click();
-            BrowserUtils.waitFor(1);
+            BrowserUtils.waitFor(2);
         }
     }
 
@@ -75,13 +78,14 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
         jse.executeScript("arguments[0].value=';'", vehiclesPage.pageInputBox);
         BrowserUtils.waitFor(1);
         vehiclesPage.pageInputBox.sendKeys(pageNumber);
+        BrowserUtils.waitFor(1);
 
     }
 
     @Then("the page input box should be {string}")
     public void the_page_input_box_should_be(String expectedInputNum) {
 
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(5);
         String actualInputNum = vehiclesPage.pageInputBox.getAttribute("value");
         Assert.assertEquals("verify page input box",expectedInputNum, actualInputNum);
         System.out.println("expectedInputNum = " + expectedInputNum);
@@ -91,7 +95,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @Then("the per page button should be {string}")
     public void the_per_page_button_should_be(String expectedDefaultNum) {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         String actualDefaultNum = vehiclesPage.perPageButton.getText();
         Assert.assertEquals("verify default per-page number",expectedDefaultNum, actualDefaultNum);
 
@@ -99,20 +103,20 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @When("the user clicks the view per page button")
     public void the_user_clicks_the_view_per_page_button() {
-        BrowserUtils.waitForVisibility(vehiclesPage.perPageButton, 5);
+        BrowserUtils.waitFor(5);
         vehiclesPage.perPageButton.click();
 
     }
 
     @When("the user select the item {string}")
     public void the_user_select_the_item(String numberItem) {
-        BrowserUtils.waitFor(1);
+        BrowserUtils.waitFor(5);
         vehiclesPage.selectPerPageItem(numberItem);
     }
 
     @Then("the dropdown should be {string}")
     public void the_dropdown_should_be(String expectedPerPageNum) {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         String actualPerPageNum = vehiclesPage.perPageButton.getText();
         Assert.assertEquals("verify per-page number", expectedPerPageNum, actualPerPageNum);
 
@@ -120,6 +124,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @Then("row size should be {string}")
     public void row_size_should_be(String expectedRowSize) {
+        BrowserUtils.waitFor(5);
         int actualRowSize = vehiclesPage.tableRowSize.size();
         Assert.assertEquals("verify row size", Integer.parseInt(expectedRowSize), actualRowSize);
 
@@ -128,7 +133,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @When("the user clicks on the Export Grid button")
     public void the_user_clicks_on_the_Export_Grid_button() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         vehiclesPage.exportGridButton.click();
         BrowserUtils.waitFor(1);
 
@@ -136,7 +141,7 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     @When("the user click the {string}")
     public void the_user_click_the(String formatType) {
-
+        BrowserUtils.waitFor(5);
         vehiclesPage.selectFormat(formatType);
 
     }
