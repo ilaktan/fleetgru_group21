@@ -164,16 +164,9 @@ Feature:
 	# 4-Truck Driver can reach the all activities by using Newer and Older buttons
 	@FLEET-397 @FLEET-667 @FLEET-396
 	Scenario: Truck Driver can see all informations about specific car
-		
-		   Background:
-		     Given the user is on the login page
-		     And the user logs in using "driver_username" and "driver_password"
-		     And the user goes to Vehicles page
-		
-		
-		  @FLEET-397 @FLEET-396
-		  Scenario:As a Storemanager/SalesManager I should be able to create car
-		     Then the user sees all informations about specific car	
+		And the user navigates to "Fleet" to "Vehicles"
+		Then the user sees all informations about specific car
+
 
 	#*User Story :* 
 	#
