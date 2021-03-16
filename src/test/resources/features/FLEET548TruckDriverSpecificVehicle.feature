@@ -32,7 +32,8 @@ Feature: Truck driver specific info
    Scenario: Truck Driver can reach the all activities by using Newer and Older buttons
      When the user navigates to "Fleet" to "Vehicles"
      And the user click on any line
+     When the user clicks Older
+     And the user sees all info
      When the user clicks Newer
      Then the user sees all info
-     When the user clicks Older
-     Then the user sees all info
+
