@@ -12,10 +12,10 @@ Feature: Functionality types
     Then the user gets any "<car>" information
     And  the hompage contains "<title>"
     Examples:
-      | car   | title    |
-      | car6  | Zemler   |
-      | car4  | Florida  |
-      | car19 | Fredrika |
+      | car  | title   |
+      | car1 | Johnson |
+      | car2 | Denver  |
+      | car3 | Plummer |
 
 
   @FLEET-635
