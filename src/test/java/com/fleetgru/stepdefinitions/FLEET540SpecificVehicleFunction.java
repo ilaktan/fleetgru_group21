@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -19,17 +20,17 @@ public class FLEET540SpecificVehicleFunction {
 
         String CarType=carR;
         switch (CarType){
-            case"car4":
-                new VehiclesPage().car4.click();
-                break;
-            case"car6":
-                new VehiclesPage().car6.click();
-                break;
-            case"car19":
-                new VehiclesPage().car19.click();
-                break;
             case"car1":
                 new VehiclesPage().car1.click();
+                break;
+            case"car2":
+                new VehiclesPage().car2.click();
+                break;
+            case"car3":
+                new VehiclesPage().car3.click();
+                break;
+            case"car4":
+                ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", new VehiclesPage().car4);
                 break;
             default:
                 System.out.println("there is a problem in switch case");
@@ -39,7 +40,7 @@ public class FLEET540SpecificVehicleFunction {
     }
     @And("the hompage contains {string}")
     public void the_homepage_contains (String ecpectedTitle){
-        BrowserUtils.waitFor(10);
+        BrowserUtils.waitFor(5);
         Assert.assertTrue(Driver.get().getTitle().contains(ecpectedTitle));
     }
 

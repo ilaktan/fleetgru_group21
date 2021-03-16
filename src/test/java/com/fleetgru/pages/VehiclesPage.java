@@ -90,6 +90,9 @@ public class VehiclesPage extends BasePage{
     @FindBy(css = "a.btn.icons-holder-text.no-hash")})//
     public WebElement addEvent;
 
+    @FindBy(css=".icons-holder-text")
+    public WebElement addEvent2;
+
     @FindBy(xpath = "(//tbody/tr[15]/td[4])[1]")
     public WebElement oneCarData;
 
@@ -186,14 +189,14 @@ public class VehiclesPage extends BasePage{
 @FindBy(xpath = "//tbody/tr[td='12,345']")
 public WebElement car1;
 
-    @FindBy(xpath = "//table//tr[4]")
+    @FindBy(xpath = "Florida")
     public WebElement car4;
 
-    @FindBy(xpath = "//table//tr[6]")
-    public WebElement car6;
+    @FindBy(xpath = "//table//tr[3]")
+    public WebElement car3;
 
-    @FindBy(xpath = "//table//tr[19]")
-    public WebElement car19;
+    @FindBy(xpath = "//table//tr[2]")
+    public WebElement car2;
 
     @FindBy (xpath= "//a[.='Activity']")
     public  WebElement activity;
@@ -391,7 +394,7 @@ public WebElement plusSign;
     @FindBy(css=".input-widget")
     public WebElement inputBox;
 
-    @FindBy(css="div.page-size .caret")
+    @FindBy(css="div.page-size .btn")
     public WebElement viewPerPageBox;
 
     @FindBy(xpath="//a[contains(.,'50')]")
@@ -406,13 +409,13 @@ public WebElement plusSign;
     @FindBy(xpath="//div[@class='flash-messages-holder']")
     public WebElement greenBox;
 
-    @FindBy(xpath ="//tr[5]//input[1]")
+    @FindBy(xpath ="//tr[25]//input[1]")
     public WebElement selectCheckBox;
 
     @FindBy(xpath ="//thead[@class='grid-header']//i[@class='fa-ellipsis-h']")
     public WebElement massActions;
 
-    @FindBy(css="ul.detach .action")
+    @FindBy(css="ul.detach .fa-trash-o")
     public WebElement deleteButton;
 
     @FindBy(css =".ok")
