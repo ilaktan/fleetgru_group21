@@ -123,7 +123,7 @@ public class FLEET539SideBarWidgetsStepDef {
 
     @When("user clicks on Favorites")
     public void user_clicks_on_Favorites() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.get();
         javascriptExecutor.executeScript("arguments[0].click();", vehicle.Favorites);
     }

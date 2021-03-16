@@ -41,7 +41,7 @@ Feature:Plus sign functionality
     And clicks on dropdown menu
     When user clicks on Favorites
     Then verifies existing favourites pages displayed
-    When user clicks on Favorites
+    And user clicks on Favorites
 
 
 
