@@ -59,12 +59,12 @@ Feature: Getting Vehicle Information as a Truck Driver
   Scenario: Using Export-Grid button -CSV
     When the user navigates to "Fleet" to "Vehicles"
     When the user clicks on the Export Grid button
-    And the user click the "CSV"
+    And User click the "CSV"
     Then the user should be able to see success message on the page
 
   @FLEET-607 @FLEET-608
   Scenario: Using Export-Grid button -XLSX
     When the user navigates to "Fleet" to "Vehicles"
     When the user clicks on the Export Grid button
-    And the user click the "XLSX"
+    And User click the "XLSX"
     Then the user should be able to see success message on the page

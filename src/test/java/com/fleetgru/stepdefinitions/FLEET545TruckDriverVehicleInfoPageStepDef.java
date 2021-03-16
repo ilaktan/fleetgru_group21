@@ -139,8 +139,8 @@ public class FLEET545TruckDriverVehicleInfoPageStepDef {
 
     }
 
-    @When("the user click the {string}")
-    public void the_user_click_the(String formatType) {
+    @When("User click the {string}")
+    public void User_click_the(String formatType) {
         BrowserUtils.waitFor(5);
         vehiclesPage.selectFormat(formatType);
 
