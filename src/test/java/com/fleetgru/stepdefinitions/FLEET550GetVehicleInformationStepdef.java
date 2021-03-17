@@ -19,10 +19,10 @@ public class FLEET550GetVehicleInformationStepdef {
 
     @Then("the user can change the entity number by clicking the View Per Page box")
     public void the_user_can_change_the_entity_number_by_clicking_the_View_Per_Page_box() {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", new VehiclesPage().viewPerPageBox);
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", new VehiclesPage().viewPerPageBox1);
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", new VehiclesPage().viewPerPageBox50);
         BrowserUtils.waitFor(7);
-        Assert.assertTrue(new VehiclesPage().viewPerPageBox.getText().contains("50"));
+        Assert.assertTrue(new VehiclesPage().viewPerPageBox1.getText().contains("50"));
 
     }
 

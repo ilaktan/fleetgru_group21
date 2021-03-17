@@ -221,6 +221,7 @@ Feature:
 		When user clicks on Favorites
 		Then verifies existing favourites pages displayed
 		When user clicks on Favorites
+        And user close Favorites button
 
 
 	#{color:#00875a}*User Story :* {color}

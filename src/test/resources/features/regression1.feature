@@ -349,6 +349,7 @@ Feature:
 	# 
 	@FLEET-638 @FLEET-667
 	Scenario: Delete any car with valid credentials
+        When the user navigates to "Fleet" to "Vehicles"
 		Then the user can select any car by clicking check box from All-Cars page
 		And the user can go and click to delete button at the end of menu bar
 		And the user can click yes delete button at the delete confirmation box

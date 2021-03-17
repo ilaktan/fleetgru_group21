@@ -6,7 +6,7 @@ Feature: User can delete any car with valid credentials
     When the user enters the sales manager information
     Then the user should be able to login
     When the user navigates to "Fleet" to "Vehicles"
-  @FLEET-638 @ali
+  @FLEET-638a @ali
 Scenario: Delete any car with valid credentials
   Then the user can select any car by clicking check box from All-Cars page
   And the user can go and click to delete button at the end of menu bar

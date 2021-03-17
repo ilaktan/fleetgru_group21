@@ -406,7 +406,10 @@ public WebElement plusSign;
     @FindBy(css="div.page-size .btn")
     public WebElement viewPerPageBox;
 
-    @FindBy(xpath="//a[contains(.,'50')]")
+    @FindBy(xpath="//button[@class='btn dropdown-toggle ']")
+    public WebElement viewPerPageBox1;
+
+    @FindBy(css="a[data-size='50']")
     public WebElement viewPerPageBox50;
 
     @FindBy(xpath="//a[contains(.,'Export Grid')]")

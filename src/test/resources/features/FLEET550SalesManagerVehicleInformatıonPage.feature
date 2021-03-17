@@ -6,7 +6,7 @@ Feature: Sales Manager get vehicle informations
     When the user enters the sales manager information
     Then the user should be able to login
     When the user navigates to "Fleet" to "Vehicles"
-  @FLEET-661
+  @FLEET-661a
 Scenario: SalesManager should bdure able to get vehicle informations
   Then the user can go any page by clicking page number
   And the user can change the entity number by clicking the View Per Page box
