@@ -252,6 +252,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-586 @FLEET-667 @FLEET-596
 	Scenario: As store manager plus sign functionality for Recent Emails
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		And the user clicks enter keyword inputbox
 		And sends Recent emails keys
@@ -273,6 +274,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-587 @FLEET-667 @FLEET-596
 	Scenario: As store manager plus sign functionality for Sticky Note
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		Then user should be able to click add button for Sticky Note
 		When clicks on Close Button
@@ -291,6 +293,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-588 @FLEET-667 @FLEET-596
 	Scenario: As store manager plus sign functionality for Task list
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		Then user should be able to click add button Task list
 		When clicks on Close Button
@@ -309,6 +312,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-589 @FLEET-667 @FLEET-596
 	Scenario: As store manager pin sign functionality
+		When the user navigates to "Fleet" to "Vehicles"
 		When user clicks on pin button
 		Then verifies existing page pinned
 		When user clicks on pin button
@@ -327,6 +331,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-590 @FLEET-667 @FLEET-596
 	Scenario: As store manager Favourite Sign Functionality
+		When the user navigates to "Fleet" to "Vehicles"
 		When user clicks on favourite sign button
 		And clicks on dropdown menu
 		When user clicks on Favorites

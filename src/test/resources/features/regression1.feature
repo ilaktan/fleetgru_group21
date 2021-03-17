@@ -197,7 +197,7 @@ Feature:
 	#*2-Storemanager/SalesManager can use Filters sign with opening Manage Filters button for filtering informations*
 	#3-Storemanager/SalesManager can refresh the page by using Refresh button
 	#4-Storemanager/SalesManager can reset the filtering settings by using Reset button
-	@FLEET-626 @FLEET-667 @FLEET-632
+	@FLEET-626 @FLEET-667 @FLEET-632 @fail
 	Scenario: Using the Manage Filter as a sales manager -Contains button with valid item
 		When the user navigates to "Fleet" to "Vehicles"
 		When the user click the filter button
@@ -254,6 +254,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-591 @FLEET-667 @FLEET-596
 	Scenario: As sales manager plus sign functionality for Recent Emails
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		And the user clicks enter keyword inputbox
 		And sends Recent emails keys
@@ -276,6 +277,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-592 @FLEET-667 @FLEET-596
 	Scenario: As sales manager plus sign functionality for Sticky Note
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		Then user should be able to click add button for Sticky Note
 		When clicks on Close Button
@@ -294,6 +296,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-593 @FLEET-667 @FLEET-596
 	Scenario: As sales manager plus sign functionality for Task list
+		When the user navigates to "Fleet" to "Vehicles"
 		When the user clicks on plus sign
 		Then user should be able to click add button Task list
 		When clicks on Close Button
@@ -312,6 +315,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-594 @FLEET-667 @FLEET-596
 	Scenario: As sales manager pin sign functionality
+		When the user navigates to "Fleet" to "Vehicles"
 		When user clicks on pin button
 		Then verifies existing page pinned
 		When user clicks on pin button
@@ -330,6 +334,7 @@ Feature:
 	#3-Storemanager/SalesManager can make the page favourite by using favourite sign
 	@FLEET-595 @FLEET-667 @FLEET-596
 	Scenario: As sales manager favourite sign functionality
+		When the user navigates to "Fleet" to "Vehicles"
 		When user clicks on favourite sign button
 		And clicks on dropdown menu
 		When user clicks on Favorites
