@@ -34,11 +34,11 @@ Feature:Plus sign functionality
     Then verifies existing page pinned
     When user clicks on pin button
     Then verifies Learn how to use this space text displayed
-  @FLEET-595 @FLEET-596
+  @FLEET-595 @FLEET-596 @cns
 
   Scenario: As sales manager favourite sign functionality
     When user clicks on favourite sign button
     And clicks on dropdown menu
     When user clicks on Favorites
     Then verifies existing favourites pages displayed
-    And user clicks on Favorites
+    And user close Favorites button
