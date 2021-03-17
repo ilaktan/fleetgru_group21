@@ -130,6 +130,10 @@ Feature:
 	#3-Truck driver can make the page favourite by using favourite sign
 	@FLEET-649 @FLEET-667 @FLEET-655
 	Scenario: As Truck Driver plus sign functionality for Recent Emails
+        Given the user is on the login page
+        When the user enters the driver information
+        Then the user should be able to login
+        When the user navigates to "Fleet" to "Vehicles"
 		And the user clicks on plus sign
 		And the user clicks enter keyword inputbox
 		And sends Recent emails keys
@@ -211,7 +215,8 @@ Feature:
 		And clicks on dropdown menu
 		When user clicks on Favorites
 		Then verifies existing favourites pages displayed
-		When user clicks on Favorites	
+		When user clicks on Favorites
+
 
 	#{color:#00875a}*User Story :* {color}
 	#
@@ -319,10 +324,10 @@ Feature:
 		Then the user gets any "<car>" information
 		And  the hompage contains "<title>"
 		    Examples:
-		      | car   | title    |
-		      | car6  | Zemler   |
-		      | car4  | Florida  |
-		      | car19 | Fredrika |
+              | car  | title   |
+              | car1 | Johnson |
+              | car2 | Denver  |
+              | car3 | Plummer |
 			
 
 	#User Story :
