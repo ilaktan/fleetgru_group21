@@ -1,4 +1,5 @@
-Feature: 
+@regression
+Feature:
 
 	Background:
 		#@FLEET-554
@@ -333,7 +334,7 @@ Feature:
 		And clicks on dropdown menu
 		When user clicks on Favorites
 		Then verifies existing favourites pages displayed
-		And user clicks on Favorites	
+		And user close Favorites button
 
 	#User Story :
 	#
