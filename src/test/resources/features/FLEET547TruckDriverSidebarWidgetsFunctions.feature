@@ -38,11 +38,12 @@ Feature: as a Truck Driver Vehicle InformationFunctionality widgets
     When user clicks on pin button
     Then verifies Learn how to use this space text displayed
 
-  @FLEET-654a @FLEET-547
+  @FLEET-654 @FLEET-547
   Scenario: As Truck Driver favourite sign functionality
     When user clicks on favourite sign button
     And clicks on dropdown menu
     When user clicks on Favorites
     Then verifies existing favourites pages displayed
     When user clicks on Favorites
+    And user close Favorites button
 
