@@ -1,6 +1,5 @@
 package com.fleetgru.pages;
 
-import com.fleetgru.utilities.BrowserUtils;
 import com.fleetgru.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -247,7 +246,7 @@ public WebElement car1;
             new Actions(Driver.get()).moveToElement(oneCarData).pause(200).click().perform();
             System.out.println("clicked a Car");
             click_count++;
-            boolean a=Driver.get().getTitle().contains("Entities - System - Car - Entities - System");
+            boolean a= Driver.get().getTitle().contains("Entities - System - Car - Entities - System");
             if(a) {
                 break;
             }

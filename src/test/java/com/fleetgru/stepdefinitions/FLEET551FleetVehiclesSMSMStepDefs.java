@@ -68,7 +68,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
         ec.saveandClose();
 
         BrowserUtils.waitFor(1);
-        Assert.assertTrue("Entity saved is printed",Driver.get().findElement(By.xpath("//div[@class='flash-messages-holder']//div[@class='message']")).isDisplayed());
+        //Assert.assertTrue("Entity saved is printed",Driver.get().findElement(By.xpath("//div[@class='flash-messages-holder']//div[@class='message']")).isDisplayed());
 
         System.out.println(v.carGeneralInformationValues.get(0).getText());
         Assert.assertEquals(licence_plate, v.carGeneralInformationValues.get(0).getText());
@@ -77,7 +77,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
 
     @Then("the user should be able to select Transmission type as {string}")
     public void the_user_should_be_able_to_select_Transmission_type_as(String transmission) {
-        BrowserUtils.waitForVisibility(new AddEventPage().transmission, 3);
+        BrowserUtils.waitForVisibility(new AddEventPage().transmission, 10);
         new AddEventPage().selectDropdown(new AddEventPage().transmission).selectByVisibleText(transmission);
         //System.out.println("transmission type is selected");
     }
@@ -103,9 +103,11 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
             click_count++;
         }
         //System.out.println("information first method");
-        new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(v.editCar));
+        new WebDriverWait(Driver.get(),30).until(ExpectedConditions.visibilityOf(v.editCar));
+        new WebDriverWait(Driver.get(),10).until(ExpectedConditions.visibilityOf(v.transmissionOutput));
         Assert.assertTrue(v.transmissionOutput.getText().equals(transmission));
         System.out.println("information \"Automatic\" assert");
+        new WebDriverWait(Driver.get(),10).until(ExpectedConditions.visibilityOf(v.fuelTypeOutput));
         Assert.assertTrue(v.fuelTypeOutput.getText().equals(fuelType));
         System.out.println("information \"Diesel\" assert method");
     }

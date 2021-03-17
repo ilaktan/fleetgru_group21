@@ -12,7 +12,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 
 public class FLEET548TruckDriverSpecificVehicleStepDef {

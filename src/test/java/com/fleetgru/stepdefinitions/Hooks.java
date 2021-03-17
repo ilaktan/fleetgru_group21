@@ -33,11 +33,13 @@ public class Hooks {
         //log out
 
         try{
-            WebElement username=Driver.get().findElement(By.cssSelector("#user-menu>a"));
-            WebElement logout=Driver.get().findElement(By.cssSelector("#user-menu ul .no-hash"));
-            new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(username));
+            WebElement username= Driver.get().findElement(By.cssSelector("#user-menu>a"));
+            WebElement logout= Driver.get().findElement(By.cssSelector("#user-menu ul .no-hash"));
+            new WebDriverWait(Driver.get(),20).until(ExpectedConditions.visibilityOf(username));
+            if(!username.isDisplayed()) Driver.get().navigate().refresh();
+            new WebDriverWait(Driver.get(),10).until(ExpectedConditions.visibilityOf(username));
             new Actions(Driver.get()).moveToElement(username).click().perform();
-            new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(logout));
+            new WebDriverWait(Driver.get(),20).until(ExpectedConditions.visibilityOf(logout));
             new Actions(Driver.get()).moveToElement(logout).click().perform();
         }catch(NoSuchElementException | ElementNotInteractableException|TimeoutException e){
 
