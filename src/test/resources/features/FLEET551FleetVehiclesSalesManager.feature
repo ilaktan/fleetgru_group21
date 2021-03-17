@@ -1,4 +1,4 @@
-@jo
+
 Feature: SalesManager edit specific car
 
 	@FLEET-564 @FLEET-569

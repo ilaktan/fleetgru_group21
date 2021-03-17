@@ -1,4 +1,4 @@
-@jo
+
 Feature: Truck Driver can edit car
 
   @FLEET-556 @FLEET-558

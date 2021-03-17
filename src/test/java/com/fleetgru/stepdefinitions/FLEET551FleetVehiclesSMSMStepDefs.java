@@ -77,8 +77,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
 
     @Then("the user should be able to select Transmission type as {string}")
     public void the_user_should_be_able_to_select_Transmission_type_as(String transmission) {
-        new AddEventPage().waitUntilWebElementVisible(new AddEventPage().transmission,3);
-        //BrowserUtils.waitForVisibility(new AddEventPage().transmission, 3);
+        BrowserUtils.waitForVisibility(new AddEventPage().transmission, 10);
         new AddEventPage().selectDropdown(new AddEventPage().transmission).selectByVisibleText(transmission);
         //System.out.println("transmission type is selected");
     }

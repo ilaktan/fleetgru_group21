@@ -1,4 +1,4 @@
-@jo
+
 Feature: StoreManager edit specific car
 
 	@FLEET-560 @FLEET-569

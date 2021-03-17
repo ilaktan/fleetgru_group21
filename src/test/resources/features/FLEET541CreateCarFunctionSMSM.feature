@@ -15,7 +15,7 @@ Feature: Storemanager/SalesManager create car function
       |sales_manager_username|sales_manager_password|
       |store_manager_username|store_manager_password|
 
-  @FLEET-394
+  @FLEET-394 @dr
   Scenario Outline: Storemanager/SalesManager can also add xVehicle Model Vehicle Make informations by using +Add button when creating car
     Given the user is on the login page
     And the user logs in using "<username>" and "<password>"
