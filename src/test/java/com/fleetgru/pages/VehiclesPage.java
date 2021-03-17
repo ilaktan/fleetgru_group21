@@ -379,6 +379,9 @@ public WebElement plusSign;
     @FindBy(xpath = "//button[@class='close']/following-sibling::a[1]")
     public WebElement favoritePages;
 
+    @FindBy(css = "button.close")
+    public WebElement closeBTN;
+
     // @FindBy (xpath = "//div[@class='dot-menu-empty-message']")
     // public WebElement noItemsMessage;
 

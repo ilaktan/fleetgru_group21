@@ -1,7 +1,7 @@
 @US-541
 Feature: Storemanager/SalesManager create car function
 
-  @FLEET-393
+  @FLEET-393 @daryna
   Scenario Outline:As a Storemanager/SalesManager I should be able to create car
     Given the user is on the login page
     And the user logs in using "<username>" and "<password>"

@@ -142,5 +142,12 @@ public class FLEET539SideBarWidgetsStepDef {
 
 
     }
+    @Then("user close Favorites button")
+    public void user_close_Favorites_button() {
+        BrowserUtils.waitFor(3);
+        vehicle.closeBTN.click();
+    }
+
+
 
 }

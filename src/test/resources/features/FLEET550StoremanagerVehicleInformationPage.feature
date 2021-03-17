@@ -6,7 +6,7 @@ Feature: Store Manager get vehicle informations
     When the user enters the store manager information
     Then the user should be able to login
     When the user navigates to "Fleet" to "Vehicles"
-@FLEET-660
+@FLEET-660 
 Scenario: Store Manager can see vehicle information by navigating
   Then the user can go any page by clicking page number
   And the user can change the entity number by clicking the View Per Page box
