@@ -443,7 +443,6 @@ Feature:
 	#1-Storemanager/SalesManager can edit any selected car by using Edit button
 	@FLEET-567 @FLEET-667 @FLEET-568
 	Scenario: SalesManager edit car driver name FLEET-551
-		Given the user logins as "Store Manager" successfully
 		When the user navigates to "Fleet" to "Vehicles"
 		And the user clicks any car in the list
 		And the user clicks car edit button
