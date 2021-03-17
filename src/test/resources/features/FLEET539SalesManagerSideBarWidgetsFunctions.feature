@@ -6,7 +6,7 @@ Feature:Plus sign functionality
     When the user enters the sales manager information
     Then the user should be able to login
     When the user navigates to "Fleet" to "Vehicles"
-  @FLEET-591 @FLEET-596
+  @FLEET-591 @FLEET-596 @cns
   Scenario:As sales manager plus sign functionality for Recent Emails
     When the user clicks on plus sign
     And the user clicks enter keyword inputbox
@@ -28,7 +28,7 @@ Feature:Plus sign functionality
     Then user should be able to click add button Task list
     When clicks on Close Button
     Then verify Task list added.
-  @FLEET-594 @FLEET-596
+  @FLEET-594 @FLEET-596  @cns
   Scenario: As sales manager pin sign functionality
     When user clicks on pin button
     Then verifies existing page pinned
