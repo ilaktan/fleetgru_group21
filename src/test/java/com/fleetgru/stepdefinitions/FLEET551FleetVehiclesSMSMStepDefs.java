@@ -45,6 +45,7 @@ public class FLEET551FleetVehiclesSMSMStepDefs {
         AddEventPage ec = new AddEventPage();
         VehiclesPage v=new VehiclesPage();
         /**while loop ile click sayısını yönettim*/
+        if(!v.editCar.isDisplayed()) Driver.get().navigate().refresh();
         new WebDriverWait(Driver.get(),60).until(ExpectedConditions.visibilityOf(v.editCar));
         int click_count=0;
         while (click_count<11) {
