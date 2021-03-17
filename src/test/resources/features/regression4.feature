@@ -1,4 +1,5 @@
-Feature: 
+@regression
+Feature:
 
 	#*User Story :* 
 	#
@@ -6,6 +7,7 @@ Feature:
 	#
 	# 
 	#
+
 	#*_Acceptance Criterias:_*
 	#
 	#1-Truck Driver can see all informations about specific car.
@@ -17,6 +19,9 @@ Feature:
 	#*4-Truck Driver can reach the all activities by using Newer and Older buttons*
 	@FLEET-400 @FLEET-667 @FLEET-396
 	Scenario: Truck Driver can reach the all activities by using Newer and Older buttons
+		Given the user is on the login page
+		When the user enters the driver information
+		Then the user should be able to login
 		When the user navigates to "Fleet" to "Vehicles"
 		And the user click on any line
 		When the user clicks Newer

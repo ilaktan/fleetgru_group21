@@ -1,4 +1,5 @@
-Feature: 
+@regression
+Feature:
 
 	Background:
 		#@FLEET-552

@@ -28,7 +28,7 @@ Feature: Truck driver specific info
      When the user clicks refresh button
      Then the data is refreshed
 
-   @FLEET-400 @daryna
+   @FLEET-400
    Scenario: Truck Driver can reach the all activities by using Newer and Older buttons
      When the user navigates to "Fleet" to "Vehicles"
      And the user click on any line

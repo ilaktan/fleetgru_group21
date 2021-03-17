@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         glue = "com/fleetgru/stepdefinitions",
         dryRun = false,
 
-        tags = "@cns"
+        tags = "@regression"
 
 )
 public class CukesRunner {
