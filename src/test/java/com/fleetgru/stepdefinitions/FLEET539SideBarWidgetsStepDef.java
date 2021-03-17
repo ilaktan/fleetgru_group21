@@ -139,8 +139,12 @@ public class FLEET539SideBarWidgetsStepDef {
     public void verifies_existing_favourites_pages_displayed() {
         BrowserUtils.waitFor(3);
         Assert.assertTrue(vehicle.favoritePages.isDisplayed());;
+    }
 
-
+    @When("the user should be able to click on Close Button")
+    public void the_user_should_be_able_to_click_on_Close_Button() {
+        vehicle.closeButton.click();
+        BrowserUtils.waitFor(7);
     }
     @Then("user close Favorites button")
     public void user_close_Favorites_button() {
