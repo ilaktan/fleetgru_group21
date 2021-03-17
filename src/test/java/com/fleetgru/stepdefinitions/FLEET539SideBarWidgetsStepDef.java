@@ -7,6 +7,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 
 public class FLEET539SideBarWidgetsStepDef {
 
@@ -104,8 +106,13 @@ public class FLEET539SideBarWidgetsStepDef {
 
     @Then("verifies Learn how to use this space text displayed")
     public void verifies_Learn_how_to_use_this_space_text_displayed() {
-        BrowserUtils.waitFor(3);
-        Assert.assertTrue(vehicle.warningText.isDisplayed());
+        BrowserUtils.waitFor(7);
+        WebElement warningTexts = null;
+        try {
+            warningTexts = new VehiclesPage().warningText;
+        } catch (NoSuchElementException e) {
+        }
+        Assert.assertTrue(warningTexts != null);
     }
 
     @When("user clicks on favourite sign button")
